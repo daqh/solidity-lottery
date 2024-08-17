@@ -8,7 +8,6 @@ contract Lottery {
     // function. We therefore need to explicity use the `address payable[]`
     // array type for the players array.
     address public manager;
-    address payable[] public players;
     Ticket[] public tickets;
 
     // As of Solidity 0.5.0 constructors must be defined using the `constructor`
@@ -25,7 +24,7 @@ contract Lottery {
     // that receive Ether. This is to prevent accidental calls to functions
     // that were not meant to receive Ether.
     function enter() public payable {
-        // require(msg.value > .01 ether);
+        require(msg.value > .01 ether);
         // players.push(msg.sender);
         tickets.push(new Ticket(address(this), msg.sender, tickets.length));
     }
