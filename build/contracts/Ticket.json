@@ -80,14 +80,14 @@
     "absolutePath": "project:/contracts/Ticket.sol",
     "exportedSymbols": {
       "Ticket": [
-        77
+        74
       ]
     },
-    "id": 78,
+    "id": 75,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 48,
+        "id": 45,
         "literals": [
           "solidity",
           ">=",
@@ -106,19 +106,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 77,
+        "id": 74,
         "linearizedBaseContracts": [
-          77
+          74
         ],
         "name": "Ticket",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 50,
+            "id": 47,
             "name": "lottery",
             "nodeType": "VariableDeclaration",
-            "scope": 77,
+            "scope": 74,
             "src": "55:22:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -127,7 +127,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 49,
+              "id": 46,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "55:7:1",
@@ -142,10 +142,10 @@
           },
           {
             "constant": false,
-            "id": 52,
+            "id": 49,
             "name": "player",
             "nodeType": "VariableDeclaration",
-            "scope": 77,
+            "scope": 74,
             "src": "83:29:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -154,7 +154,7 @@
               "typeString": "address payable"
             },
             "typeName": {
-              "id": 51,
+              "id": 48,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "83:15:1",
@@ -169,10 +169,10 @@
           },
           {
             "constant": false,
-            "id": 54,
+            "id": 51,
             "name": "ticketNumber",
             "nodeType": "VariableDeclaration",
-            "scope": 77,
+            "scope": 74,
             "src": "118:24:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -181,7 +181,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 53,
+              "id": 50,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "118:4:1",
@@ -195,25 +195,25 @@
           },
           {
             "body": {
-              "id": 75,
+              "id": 72,
               "nodeType": "Block",
               "src": "231:99:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 65,
+                    "id": 62,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 63,
+                      "id": 60,
                       "name": "lottery",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 50,
+                      "referencedDeclaration": 47,
                       "src": "241:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -224,11 +224,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 64,
+                      "id": 61,
                       "name": "_lottery",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 56,
+                      "referencedDeclaration": 53,
                       "src": "251:8:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -241,25 +241,25 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 66,
+                  "id": 63,
                   "nodeType": "ExpressionStatement",
                   "src": "241:18:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 69,
+                    "id": 66,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 67,
+                      "id": 64,
                       "name": "player",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 52,
+                      "referencedDeclaration": 49,
                       "src": "269:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
@@ -270,11 +270,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 68,
+                      "id": 65,
                       "name": "_player",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 58,
+                      "referencedDeclaration": 55,
                       "src": "278:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
@@ -287,25 +287,25 @@
                       "typeString": "address payable"
                     }
                   },
-                  "id": 70,
+                  "id": 67,
                   "nodeType": "ExpressionStatement",
                   "src": "269:16:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 73,
+                    "id": 70,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 71,
+                      "id": 68,
                       "name": "ticketNumber",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 54,
+                      "referencedDeclaration": 51,
                       "src": "295:12:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -316,11 +316,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 72,
+                      "id": 69,
                       "name": "_ticketNumber",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 60,
+                      "referencedDeclaration": 57,
                       "src": "310:13:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -333,29 +333,29 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 74,
+                  "id": 71,
                   "nodeType": "ExpressionStatement",
                   "src": "295:28:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 76,
+            "id": 73,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 61,
+              "id": 58,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 56,
+                  "id": 53,
                   "name": "_lottery",
                   "nodeType": "VariableDeclaration",
-                  "scope": 76,
+                  "scope": 73,
                   "src": "161:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -364,7 +364,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 55,
+                    "id": 52,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:7:1",
@@ -379,10 +379,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 58,
+                  "id": 55,
                   "name": "_player",
                   "nodeType": "VariableDeclaration",
-                  "scope": 76,
+                  "scope": 73,
                   "src": "179:23:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -391,7 +391,7 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 57,
+                    "id": 54,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "179:15:1",
@@ -406,10 +406,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 60,
+                  "id": 57,
                   "name": "_ticketNumber",
                   "nodeType": "VariableDeclaration",
-                  "scope": 76,
+                  "scope": 73,
                   "src": "204:18:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -418,7 +418,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 59,
+                    "id": 56,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "204:4:1",
@@ -434,19 +434,19 @@
               "src": "160:63:1"
             },
             "returnParameters": {
-              "id": 62,
+              "id": 59,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "231:0:1"
             },
-            "scope": 77,
+            "scope": 74,
             "src": "149:181:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 78,
+        "scope": 75,
         "src": "33:304:1"
       }
     ],
@@ -457,7 +457,7 @@
       "absolutePath": "project:/contracts/Ticket.sol",
       "exportedSymbols": {
         "Ticket": [
-          77
+          74
         ]
       }
     },
@@ -474,7 +474,7 @@
             ".0"
           ]
         },
-        "id": 48,
+        "id": 45,
         "name": "PragmaDirective",
         "src": "0:31:1"
       },
@@ -490,17 +490,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            77
+            74
           ],
           "name": "Ticket",
-          "scope": 78
+          "scope": 75
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "lottery",
-              "scope": 77,
+              "scope": 74,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -514,12 +514,12 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
-                "id": 49,
+                "id": 46,
                 "name": "ElementaryTypeName",
                 "src": "55:7:1"
               }
             ],
-            "id": 50,
+            "id": 47,
             "name": "VariableDeclaration",
             "src": "55:22:1"
           },
@@ -527,7 +527,7 @@
             "attributes": {
               "constant": false,
               "name": "player",
-              "scope": 77,
+              "scope": 74,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address payable",
@@ -541,12 +541,12 @@
                   "stateMutability": "payable",
                   "type": "address payable"
                 },
-                "id": 51,
+                "id": 48,
                 "name": "ElementaryTypeName",
                 "src": "83:15:1"
               }
             ],
-            "id": 52,
+            "id": 49,
             "name": "VariableDeclaration",
             "src": "83:29:1"
           },
@@ -554,7 +554,7 @@
             "attributes": {
               "constant": false,
               "name": "ticketNumber",
-              "scope": 77,
+              "scope": 74,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "uint256",
@@ -567,12 +567,12 @@
                   "name": "uint",
                   "type": "uint256"
                 },
-                "id": 53,
+                "id": 50,
                 "name": "ElementaryTypeName",
                 "src": "118:4:1"
               }
             ],
-            "id": 54,
+            "id": 51,
             "name": "VariableDeclaration",
             "src": "118:24:1"
           },
@@ -586,7 +586,7 @@
                 null
               ],
               "name": "",
-              "scope": 77,
+              "scope": 74,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -598,7 +598,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_lottery",
-                      "scope": 76,
+                      "scope": 73,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -612,12 +612,12 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 55,
+                        "id": 52,
                         "name": "ElementaryTypeName",
                         "src": "161:7:1"
                       }
                     ],
-                    "id": 56,
+                    "id": 53,
                     "name": "VariableDeclaration",
                     "src": "161:16:1"
                   },
@@ -625,7 +625,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_player",
-                      "scope": 76,
+                      "scope": 73,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address payable",
@@ -639,12 +639,12 @@
                           "stateMutability": "payable",
                           "type": "address payable"
                         },
-                        "id": 57,
+                        "id": 54,
                         "name": "ElementaryTypeName",
                         "src": "179:15:1"
                       }
                     ],
-                    "id": 58,
+                    "id": 55,
                     "name": "VariableDeclaration",
                     "src": "179:23:1"
                   },
@@ -652,7 +652,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_ticketNumber",
-                      "scope": 76,
+                      "scope": 73,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -665,17 +665,17 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 59,
+                        "id": 56,
                         "name": "ElementaryTypeName",
                         "src": "204:4:1"
                       }
                     ],
-                    "id": 60,
+                    "id": 57,
                     "name": "VariableDeclaration",
                     "src": "204:18:1"
                   }
                 ],
-                "id": 61,
+                "id": 58,
                 "name": "ParameterList",
                 "src": "160:63:1"
               },
@@ -686,7 +686,7 @@
                   ]
                 },
                 "children": [],
-                "id": 62,
+                "id": 59,
                 "name": "ParameterList",
                 "src": "231:0:1"
               },
@@ -711,11 +711,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 50,
+                              "referencedDeclaration": 47,
                               "type": "address",
                               "value": "lottery"
                             },
-                            "id": 63,
+                            "id": 60,
                             "name": "Identifier",
                             "src": "241:7:1"
                           },
@@ -725,21 +725,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 56,
+                              "referencedDeclaration": 53,
                               "type": "address",
                               "value": "_lottery"
                             },
-                            "id": 64,
+                            "id": 61,
                             "name": "Identifier",
                             "src": "251:8:1"
                           }
                         ],
-                        "id": 65,
+                        "id": 62,
                         "name": "Assignment",
                         "src": "241:18:1"
                       }
                     ],
-                    "id": 66,
+                    "id": 63,
                     "name": "ExpressionStatement",
                     "src": "241:18:1"
                   },
@@ -762,11 +762,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 52,
+                              "referencedDeclaration": 49,
                               "type": "address payable",
                               "value": "player"
                             },
-                            "id": 67,
+                            "id": 64,
                             "name": "Identifier",
                             "src": "269:6:1"
                           },
@@ -776,21 +776,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 58,
+                              "referencedDeclaration": 55,
                               "type": "address payable",
                               "value": "_player"
                             },
-                            "id": 68,
+                            "id": 65,
                             "name": "Identifier",
                             "src": "278:7:1"
                           }
                         ],
-                        "id": 69,
+                        "id": 66,
                         "name": "Assignment",
                         "src": "269:16:1"
                       }
                     ],
-                    "id": 70,
+                    "id": 67,
                     "name": "ExpressionStatement",
                     "src": "269:16:1"
                   },
@@ -813,11 +813,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 54,
+                              "referencedDeclaration": 51,
                               "type": "uint256",
                               "value": "ticketNumber"
                             },
-                            "id": 71,
+                            "id": 68,
                             "name": "Identifier",
                             "src": "295:12:1"
                           },
@@ -827,41 +827,41 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 60,
+                              "referencedDeclaration": 57,
                               "type": "uint256",
                               "value": "_ticketNumber"
                             },
-                            "id": 72,
+                            "id": 69,
                             "name": "Identifier",
                             "src": "310:13:1"
                           }
                         ],
-                        "id": 73,
+                        "id": 70,
                         "name": "Assignment",
                         "src": "295:28:1"
                       }
                     ],
-                    "id": 74,
+                    "id": 71,
                     "name": "ExpressionStatement",
                     "src": "295:28:1"
                   }
                 ],
-                "id": 75,
+                "id": 72,
                 "name": "Block",
                 "src": "231:99:1"
               }
             ],
-            "id": 76,
+            "id": 73,
             "name": "FunctionDefinition",
             "src": "149:181:1"
           }
         ],
-        "id": 77,
+        "id": 74,
         "name": "ContractDefinition",
         "src": "33:304:1"
       }
     ],
-    "id": 78,
+    "id": 75,
     "name": "SourceUnit",
     "src": "0:338:1"
   },
@@ -871,7 +871,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-08-17T11:32:18.121Z",
+  "updatedAt": "2024-08-17T17:27:57.344Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
