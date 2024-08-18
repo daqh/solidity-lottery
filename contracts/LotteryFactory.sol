@@ -6,9 +6,10 @@ contract LotteryFactory {
 
     Lottery[] public lotteries;
 
-    function createLottery() public {
+    function createLottery() public returns (Lottery) {
         Lottery lottery = new Lottery();
         lotteries.push(lottery);
+        return lottery;
     }
 
     function getLotteries() public view returns (Lottery[] memory) {
