@@ -7,7 +7,7 @@ contract LotteryFactory {
     Lottery[] public lotteries;
 
     function createLottery() public returns (Lottery) {
-        Lottery lottery = new Lottery();
+        Lottery lottery = new Lottery(msg.sender);
         lotteries.push(lottery);
         return lottery;
     }

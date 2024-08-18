@@ -7,8 +7,8 @@ contract Lottery {
     address public manager;
     Ticket[] public tickets;
 
-    constructor() public {
-        manager = msg.sender;
+    constructor(address _manager) public {
+        manager = _manager;
     }
 
     function enter() public payable {
