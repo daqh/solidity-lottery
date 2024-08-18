@@ -5,18 +5,8 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_lottery",
+          "name": "_owner",
           "type": "address"
-        },
-        {
-          "internalType": "address payable",
-          "name": "_player",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_ticketNumber",
-          "type": "uint256"
         }
       ],
       "payable": false,
@@ -26,7 +16,7 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "lottery",
+      "name": "owner",
       "outputs": [
         {
           "internalType": "address",
@@ -41,10 +31,10 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "player",
+      "name": "getOwner",
       "outputs": [
         {
-          "internalType": "address payable",
+          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -52,29 +42,14 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "ticketNumber",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_lottery\",\"type\":\"address\"},{\"internalType\":\"address payable\",\"name\":\"_player\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_ticketNumber\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"lottery\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"player\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ticketNumber\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Ticket.sol\":\"Ticket\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Ticket.sol\":{\"keccak256\":\"0xdf397d120d7eca0ed131c98c21c79a003b345a40b1282b6b72df82a3b8632246\",\"urls\":[\"bzz-raw://3239dcfdee5b3d739e2da9bbd70944a28f86976a340037bc94d0f944d06bff3a\",\"dweb:/ipfs/QmbK7EpQ5MCVjYh7s7ge3ttB77eSH4Qzrst9w17Qe5qxvR\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516102703803806102708339818101604052606081101561003357600080fd5b81019080805190602001909291908051906020019092919080519060200190929190505050826000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555081600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508060028190555050505061017e806100f26000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806348db5f8914610046578063ba13a57214610090578063c54c7da6146100da575b600080fd5b61004e6100f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61009861011e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100e2610143565b6040518082815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6002548156fea265627a7a723158208604d1da7f14a8e25d187f8614aa85017dc1bc5a24ed52b4942db436078667c864736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806348db5f8914610046578063ba13a57214610090578063c54c7da6146100da575b600080fd5b61004e6100f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61009861011e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100e2610143565b6040518082815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6002548156fea265627a7a723158208604d1da7f14a8e25d187f8614aa85017dc1bc5a24ed52b4942db436078667c864736f6c63430005100032",
-  "sourceMap": "33:304:1:-;;;149:181;8:9:-1;5:2;;;30:1;27;20:12;5:2;149:181:1;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;149:181:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;251:8;241:7;;:18;;;;;;;;;;;;;;;;;;278:7;269:6;;:16;;;;;;;;;;;;;;;;;;310:13;295:12;:28;;;;149:181;;;33:304;;;;;;",
-  "deployedSourceMap": "33:304:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:304:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;83:29;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;55:22;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;118:24;;;:::i;:::-;;;;;;;;;;;;;;;;;;;83:29;;;;;;;;;;;;;:::o;55:22::-;;;;;;;;;;;;;:::o;118:24::-;;;;:::o",
-  "source": "pragma solidity >=0.5.0 <0.9.0;\n\ncontract Ticket {\n    address public lottery;\n    address payable public player;\n    uint public ticketNumber;\n\n    constructor(address _lottery, address payable _player, uint _ticketNumber) public {\n        lottery = _lottery;\n        player = _player;\n        ticketNumber = _ticketNumber;\n    }\n    \n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Ticket.sol\":\"Ticket\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Ticket.sol\":{\"keccak256\":\"0xc49ccd5c0a9436cfa3c72145481f345053dfe19b5c726cf984a7237e87dd00c3\",\"urls\":[\"bzz-raw://44e5028505adb41a826deabaedfe94f4685f91c0248e762215151bcdaf3e445b\",\"dweb:/ipfs/QmedPDw5M9KuBRbwwfrNPkQiy5t83PZhf6mRtpPBotrUmt\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516101e63803806101e68339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050610152806100946000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c8063893d20e81461003b5780638da5cb5b14610085575b600080fd5b6100436100cf565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61008d6100f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a72315820421fe563795d85f3724a62513d873b7c662ea293fb29d10a1d5af4d5809455c364736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c8063893d20e81461003b5780638da5cb5b14610085575b600080fd5b6100436100cf565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61008d6100f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a72315820421fe563795d85f3724a62513d873b7c662ea293fb29d10a1d5af4d5809455c364736f6c63430005100032",
+  "sourceMap": "25:208:1:-;;;75:66;8:9:-1;5:2;;;30:1;27;20:12;5:2;75:66:1;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;75:66:1;;;;;;;;;;;;;;;;128:6;120:5;;:14;;;;;;;;;;;;;;;;;;75:66;25:208;;;;;;",
+  "deployedSourceMap": "25:208:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:208:1;;;;;;;;;;;;;;;;;;;;;;;;147:79;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;48:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;147:79;188:7;214:5;;;;;;;;;;;207:12;;147:79;:::o;48:20::-;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.0;\n\ncontract Ticket {\n\n    address public owner;\n\n    constructor(address _owner) public {\n        owner = _owner;\n    }\n\n    function getOwner() public view returns (address) {\n        return owner;\n    }\n    \n}\n",
   "sourcePath": "/home/valerio/Documenti/petshop/contracts/Ticket.sol",
   "ast": {
     "absolutePath": "project:/contracts/Ticket.sol",
@@ -87,18 +62,15 @@
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 45,
+        "id": 53,
         "literals": [
           "solidity",
-          ">=",
+          "^",
           "0.5",
-          ".0",
-          "<",
-          "0.9",
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:31:1"
+        "src": "0:23:1"
       },
       {
         "baseContracts": [],
@@ -115,11 +87,11 @@
         "nodes": [
           {
             "constant": false,
-            "id": 47,
-            "name": "lottery",
+            "id": 55,
+            "name": "owner",
             "nodeType": "VariableDeclaration",
             "scope": 74,
-            "src": "55:22:1",
+            "src": "48:20:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -127,10 +99,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 46,
+              "id": 54,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "55:7:1",
+              "src": "48:7:1",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -141,63 +113,10 @@
             "visibility": "public"
           },
           {
-            "constant": false,
-            "id": 49,
-            "name": "player",
-            "nodeType": "VariableDeclaration",
-            "scope": 74,
-            "src": "83:29:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_address_payable",
-              "typeString": "address payable"
-            },
-            "typeName": {
-              "id": 48,
-              "name": "address",
-              "nodeType": "ElementaryTypeName",
-              "src": "83:15:1",
-              "stateMutability": "payable",
-              "typeDescriptions": {
-                "typeIdentifier": "t_address_payable",
-                "typeString": "address payable"
-              }
-            },
-            "value": null,
-            "visibility": "public"
-          },
-          {
-            "constant": false,
-            "id": 51,
-            "name": "ticketNumber",
-            "nodeType": "VariableDeclaration",
-            "scope": 74,
-            "src": "118:24:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_uint256",
-              "typeString": "uint256"
-            },
-            "typeName": {
-              "id": 50,
-              "name": "uint",
-              "nodeType": "ElementaryTypeName",
-              "src": "118:4:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_uint256",
-                "typeString": "uint256"
-              }
-            },
-            "value": null,
-            "visibility": "public"
-          },
-          {
             "body": {
-              "id": 72,
+              "id": 64,
               "nodeType": "Block",
-              "src": "231:99:1",
+              "src": "110:31:1",
               "statements": [
                 {
                   "expression": {
@@ -210,11 +129,11 @@
                     "leftHandSide": {
                       "argumentTypes": null,
                       "id": 60,
-                      "name": "lottery",
+                      "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 47,
-                      "src": "241:7:1",
+                      "referencedDeclaration": 55,
+                      "src": "120:5:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -225,17 +144,17 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "id": 61,
-                      "name": "_lottery",
+                      "name": "_owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 53,
-                      "src": "251:8:1",
+                      "referencedDeclaration": 57,
+                      "src": "128:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "241:18:1",
+                    "src": "120:14:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -243,104 +162,12 @@
                   },
                   "id": 63,
                   "nodeType": "ExpressionStatement",
-                  "src": "241:18:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 66,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 64,
-                      "name": "player",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 49,
-                      "src": "269:6:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address_payable",
-                        "typeString": "address payable"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 65,
-                      "name": "_player",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 55,
-                      "src": "278:7:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address_payable",
-                        "typeString": "address payable"
-                      }
-                    },
-                    "src": "269:16:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address_payable",
-                      "typeString": "address payable"
-                    }
-                  },
-                  "id": 67,
-                  "nodeType": "ExpressionStatement",
-                  "src": "269:16:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 70,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 68,
-                      "name": "ticketNumber",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 51,
-                      "src": "295:12:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 69,
-                      "name": "_ticketNumber",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 57,
-                      "src": "310:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "295:28:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 71,
-                  "nodeType": "ExpressionStatement",
-                  "src": "295:28:1"
+                  "src": "120:14:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 73,
+            "id": 65,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -352,11 +179,11 @@
               "parameters": [
                 {
                   "constant": false,
-                  "id": 53,
-                  "name": "_lottery",
+                  "id": 57,
+                  "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 73,
-                  "src": "161:16:1",
+                  "scope": 65,
+                  "src": "87:14:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -364,10 +191,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 52,
+                    "id": 56,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "161:7:1",
+                    "src": "87:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -376,81 +203,108 @@
                   },
                   "value": null,
                   "visibility": "internal"
-                },
+                }
+              ],
+              "src": "86:16:1"
+            },
+            "returnParameters": {
+              "id": 59,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "110:0:1"
+            },
+            "scope": 74,
+            "src": "75:66:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 72,
+              "nodeType": "Block",
+              "src": "197:29:1",
+              "statements": [
                 {
-                  "constant": false,
-                  "id": 55,
-                  "name": "_player",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 73,
-                  "src": "179:23:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address_payable",
-                    "typeString": "address payable"
-                  },
-                  "typeName": {
-                    "id": 54,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "179:15:1",
-                    "stateMutability": "payable",
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 70,
+                    "name": "owner",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 55,
+                    "src": "214:5:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address_payable",
-                      "typeString": "address payable"
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
                     }
                   },
-                  "value": null,
-                  "visibility": "internal"
-                },
+                  "functionReturnParameters": 69,
+                  "id": 71,
+                  "nodeType": "Return",
+                  "src": "207:12:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 73,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getOwner",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 66,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "164:2:1"
+            },
+            "returnParameters": {
+              "id": 69,
+              "nodeType": "ParameterList",
+              "parameters": [
                 {
                   "constant": false,
-                  "id": 57,
-                  "name": "_ticketNumber",
+                  "id": 68,
+                  "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 73,
-                  "src": "204:18:1",
+                  "src": "188:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
                   },
                   "typeName": {
-                    "id": 56,
-                    "name": "uint",
+                    "id": 67,
+                    "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "204:4:1",
+                    "src": "188:7:1",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "160:63:1"
-            },
-            "returnParameters": {
-              "id": 59,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "231:0:1"
+              "src": "187:9:1"
             },
             "scope": 74,
-            "src": "149:181:1",
-            "stateMutability": "nonpayable",
+            "src": "147:79:1",
+            "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 75,
-        "src": "33:304:1"
+        "src": "25:208:1"
       }
     ],
-    "src": "0:338:1"
+    "src": "0:234:1"
   },
   "legacyAST": {
     "attributes": {
@@ -466,17 +320,14 @@
         "attributes": {
           "literals": [
             "solidity",
-            ">=",
+            "^",
             "0.5",
-            ".0",
-            "<",
-            "0.9",
             ".0"
           ]
         },
-        "id": 45,
+        "id": 53,
         "name": "PragmaDirective",
-        "src": "0:31:1"
+        "src": "0:23:1"
       },
       {
         "attributes": {
@@ -499,7 +350,7 @@
           {
             "attributes": {
               "constant": false,
-              "name": "lottery",
+              "name": "owner",
               "scope": 74,
               "stateVariable": true,
               "storageLocation": "default",
@@ -514,67 +365,14 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
-                "id": 46,
+                "id": 54,
                 "name": "ElementaryTypeName",
-                "src": "55:7:1"
+                "src": "48:7:1"
               }
             ],
-            "id": 47,
+            "id": 55,
             "name": "VariableDeclaration",
-            "src": "55:22:1"
-          },
-          {
-            "attributes": {
-              "constant": false,
-              "name": "player",
-              "scope": 74,
-              "stateVariable": true,
-              "storageLocation": "default",
-              "type": "address payable",
-              "value": null,
-              "visibility": "public"
-            },
-            "children": [
-              {
-                "attributes": {
-                  "name": "address",
-                  "stateMutability": "payable",
-                  "type": "address payable"
-                },
-                "id": 48,
-                "name": "ElementaryTypeName",
-                "src": "83:15:1"
-              }
-            ],
-            "id": 49,
-            "name": "VariableDeclaration",
-            "src": "83:29:1"
-          },
-          {
-            "attributes": {
-              "constant": false,
-              "name": "ticketNumber",
-              "scope": 74,
-              "stateVariable": true,
-              "storageLocation": "default",
-              "type": "uint256",
-              "value": null,
-              "visibility": "public"
-            },
-            "children": [
-              {
-                "attributes": {
-                  "name": "uint",
-                  "type": "uint256"
-                },
-                "id": 50,
-                "name": "ElementaryTypeName",
-                "src": "118:4:1"
-              }
-            ],
-            "id": 51,
-            "name": "VariableDeclaration",
-            "src": "118:24:1"
+            "src": "48:20:1"
           },
           {
             "attributes": {
@@ -597,8 +395,8 @@
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "_lottery",
-                      "scope": 73,
+                      "name": "_owner",
+                      "scope": 65,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -612,72 +410,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 52,
-                        "name": "ElementaryTypeName",
-                        "src": "161:7:1"
-                      }
-                    ],
-                    "id": 53,
-                    "name": "VariableDeclaration",
-                    "src": "161:16:1"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "_player",
-                      "scope": 73,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "address payable",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "address",
-                          "stateMutability": "payable",
-                          "type": "address payable"
-                        },
-                        "id": 54,
-                        "name": "ElementaryTypeName",
-                        "src": "179:15:1"
-                      }
-                    ],
-                    "id": 55,
-                    "name": "VariableDeclaration",
-                    "src": "179:23:1"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "_ticketNumber",
-                      "scope": 73,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "uint256",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "uint",
-                          "type": "uint256"
-                        },
                         "id": 56,
                         "name": "ElementaryTypeName",
-                        "src": "204:4:1"
+                        "src": "87:7:1"
                       }
                     ],
                     "id": 57,
                     "name": "VariableDeclaration",
-                    "src": "204:18:1"
+                    "src": "87:14:1"
                   }
                 ],
                 "id": 58,
                 "name": "ParameterList",
-                "src": "160:63:1"
+                "src": "86:16:1"
               },
               {
                 "attributes": {
@@ -688,7 +433,7 @@
                 "children": [],
                 "id": 59,
                 "name": "ParameterList",
-                "src": "231:0:1"
+                "src": "110:0:1"
               },
               {
                 "children": [
@@ -711,115 +456,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 47,
+                              "referencedDeclaration": 55,
                               "type": "address",
-                              "value": "lottery"
+                              "value": "owner"
                             },
                             "id": 60,
                             "name": "Identifier",
-                            "src": "241:7:1"
-                          },
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
-                              "referencedDeclaration": 53,
-                              "type": "address",
-                              "value": "_lottery"
-                            },
-                            "id": 61,
-                            "name": "Identifier",
-                            "src": "251:8:1"
-                          }
-                        ],
-                        "id": 62,
-                        "name": "Assignment",
-                        "src": "241:18:1"
-                      }
-                    ],
-                    "id": 63,
-                    "name": "ExpressionStatement",
-                    "src": "241:18:1"
-                  },
-                  {
-                    "children": [
-                      {
-                        "attributes": {
-                          "argumentTypes": null,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "operator": "=",
-                          "type": "address payable"
-                        },
-                        "children": [
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
-                              "referencedDeclaration": 49,
-                              "type": "address payable",
-                              "value": "player"
-                            },
-                            "id": 64,
-                            "name": "Identifier",
-                            "src": "269:6:1"
-                          },
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
-                              "referencedDeclaration": 55,
-                              "type": "address payable",
-                              "value": "_player"
-                            },
-                            "id": 65,
-                            "name": "Identifier",
-                            "src": "278:7:1"
-                          }
-                        ],
-                        "id": 66,
-                        "name": "Assignment",
-                        "src": "269:16:1"
-                      }
-                    ],
-                    "id": 67,
-                    "name": "ExpressionStatement",
-                    "src": "269:16:1"
-                  },
-                  {
-                    "children": [
-                      {
-                        "attributes": {
-                          "argumentTypes": null,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "operator": "=",
-                          "type": "uint256"
-                        },
-                        "children": [
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
-                              "referencedDeclaration": 51,
-                              "type": "uint256",
-                              "value": "ticketNumber"
-                            },
-                            "id": 68,
-                            "name": "Identifier",
-                            "src": "295:12:1"
+                            "src": "120:5:1"
                           },
                           {
                             "attributes": {
@@ -828,50 +471,154 @@
                                 null
                               ],
                               "referencedDeclaration": 57,
-                              "type": "uint256",
-                              "value": "_ticketNumber"
+                              "type": "address",
+                              "value": "_owner"
                             },
-                            "id": 69,
+                            "id": 61,
                             "name": "Identifier",
-                            "src": "310:13:1"
+                            "src": "128:6:1"
                           }
                         ],
-                        "id": 70,
+                        "id": 62,
                         "name": "Assignment",
-                        "src": "295:28:1"
+                        "src": "120:14:1"
+                      }
+                    ],
+                    "id": 63,
+                    "name": "ExpressionStatement",
+                    "src": "120:14:1"
+                  }
+                ],
+                "id": 64,
+                "name": "Block",
+                "src": "110:31:1"
+              }
+            ],
+            "id": 65,
+            "name": "FunctionDefinition",
+            "src": "75:66:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getOwner",
+              "scope": 74,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 66,
+                "name": "ParameterList",
+                "src": "164:2:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 73,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 67,
+                        "name": "ElementaryTypeName",
+                        "src": "188:7:1"
+                      }
+                    ],
+                    "id": 68,
+                    "name": "VariableDeclaration",
+                    "src": "188:7:1"
+                  }
+                ],
+                "id": 69,
+                "name": "ParameterList",
+                "src": "187:9:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 69
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 55,
+                          "type": "address",
+                          "value": "owner"
+                        },
+                        "id": 70,
+                        "name": "Identifier",
+                        "src": "214:5:1"
                       }
                     ],
                     "id": 71,
-                    "name": "ExpressionStatement",
-                    "src": "295:28:1"
+                    "name": "Return",
+                    "src": "207:12:1"
                   }
                 ],
                 "id": 72,
                 "name": "Block",
-                "src": "231:99:1"
+                "src": "197:29:1"
               }
             ],
             "id": 73,
             "name": "FunctionDefinition",
-            "src": "149:181:1"
+            "src": "147:79:1"
           }
         ],
         "id": 74,
         "name": "ContractDefinition",
-        "src": "33:304:1"
+        "src": "25:208:1"
       }
     ],
     "id": 75,
     "name": "SourceUnit",
-    "src": "0:338:1"
+    "src": "0:234:1"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x4CB19A3Cdd98cD0bc6d793dA921498166C9ed43D",
+      "transactionHash": "0xc44acf620aac4878bb9549e8a0e4c2be62693c67822be9f0c72c7a31b4105f58"
+    }
+  },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-08-17T17:27:57.344Z",
+  "updatedAt": "2024-08-18T08:33:39.007Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

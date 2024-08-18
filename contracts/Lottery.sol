@@ -12,8 +12,13 @@ contract Lottery {
     }
 
     function enter() public payable {
-        require(msg.value > .01 ether);
-        tickets.push(new Ticket(address(this), msg.sender, tickets.length));
+        require(msg.value >= .01 ether);
+        Ticket ticket = new Ticket(msg.sender);
+        tickets.push(ticket);
+    }
+
+    function getTickets() public view returns (Ticket[] memory) {
+        return tickets;
     }
 
 }
