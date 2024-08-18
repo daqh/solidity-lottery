@@ -15,6 +15,9 @@ import { CommonModule } from '@angular/common';
 })
 export class LotteryCreateComponent {
 
+  lottery: any = {
+  };
+
   constructor(
     private lotteryFactoryService: LotteryFactoryService,
     private router: Router

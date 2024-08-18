@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.8.0;
 
 import "./Lottery.sol";
 
@@ -6,14 +6,21 @@ contract LotteryFactory {
 
     Lottery[] public lotteries;
 
-    function createLottery() public returns (Lottery) {
+    function createLottery() public payable returns (Lottery) {
         Lottery lottery = new Lottery(msg.sender);
+        // Forward the received amount to the new lottery
+        address payable lotteryAddress = payable(address(lottery));
+        lotteryAddress.transfer(msg.value);
         lotteries.push(lottery);
         return lottery;
     }
 
     function getLotteries() public view returns (Lottery[] memory) {
         return lotteries;
+    }
+
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
     }
 
 }
