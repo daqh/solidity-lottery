@@ -1,6 +1,19 @@
 <h2>Lottery</h2>
 
-<a routerLink="/dashboard">Dashboard</a> >
-<a routerLink="/lottery">Lottery</a>
+<div>
+    <a routerLink="/dashboard">Dashboard</a> >
+    <a routerLink="/lottery">Lottery</a>
+</div>
 
-<p>lottery-list works!</p>
+<div>
+    <a class="btn btn-primary" (click)="createLottery()">Add Lottery</a>
+</div>
+
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-action" routerLink="/lottery/{{ lottery }}" *ngFor="let lottery of lotteries">
+    {{ lottery }}
+  </li>
+</ul>
+
