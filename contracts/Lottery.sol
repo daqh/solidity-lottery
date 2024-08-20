@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract Lottery {
 
     address public manager;
-    string public name;
+    string public description;
     uint256 public expiration;
     uint256 public prize;
 
@@ -14,17 +14,12 @@ contract Lottery {
 
     address public winner;
 
-
-    constructor(address _manager, string memory _name, uint256 _expiration, uint256 _prize) {
+    constructor(address _manager, string memory _description, uint256 _expiration, uint256 _prize) {
         manager = _manager;
-        name = _name;
+        description = _description;
         expiration = _expiration;
         prize = _prize;
     }
-
-    receive() external payable {}
-
-    fallback() external payable {}
 
     function getContestants() public view returns (address[] memory) {
         return contestants;
@@ -38,8 +33,8 @@ contract Lottery {
         return address(this).balance;
     }
 
-    function getName() public view returns (string memory) {
-        return name;
+    function getDescription() public view returns (string memory) {
+        return description;
     }
 
     function isLotteryOngoing() public view returns (bool) {
@@ -113,4 +108,9 @@ contract Lottery {
         require(address(this).balance >= prize, "Insufficient balance");
         payable(winner).transfer(prize);
     }
+
+    receive() external payable {}
+
+    fallback() external payable {}
+
 }
