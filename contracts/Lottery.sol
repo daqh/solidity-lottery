@@ -96,7 +96,7 @@ contract Lottery {
 
         contestants.push(msg.sender);
         //Increase Dynamic Seed with overflow protection.
-        dynamicSeed = (dynamicSeed + number) % type(int256).max;
+        dynamicSeed = (dynamicSeed + number) % type(uint256).max;
     }
 
     function extractWinner() public onlyAfterRevealInterval onlyIfNotEnded{
