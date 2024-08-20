@@ -46,7 +46,6 @@ contract Lottery {
     }
 
     //Access Restriction pattern to expiration time.
-
     /*
         Removed manager restriction so that the extraction
         can be performed by anyone, avoiding possible frauds.
