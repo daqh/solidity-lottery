@@ -7,6 +7,7 @@ contract Lottery {
     string public description;
     uint256 public expiration;
     uint256 public prize;
+    uint256 public participationFee;
 
     address[] public contestants;
     mapping (address => bytes32) public commitments;
@@ -14,12 +15,10 @@ contract Lottery {
 
     address public winner;
 
-    uint256 public participationFee;
-
-    constructor(address _manager, string memory _description, uint256 _expiration, uint256 _prize, uint256 _participationFee) {
+    constructor(address _manager, string memory _description, uint256 durationHours, uint256 _prize, uint256 _participationFee) {
         manager = _manager;
         description = _description;
-        expiration = _expiration;
+        expiration = block.timestamp + durationHours * 1 hours;
         prize = _prize;
         participationFee = _participationFee;
     }
@@ -40,6 +39,10 @@ contract Lottery {
         return description;
     }
 
+    function getExpiration() public view returns (uint256) {
+        return expiration;
+    }
+
     function isLotteryOngoing() public view returns (bool) {
         return block.timestamp < expiration;
     }
@@ -50,6 +53,10 @@ contract Lottery {
 
     function getParticipationFee() public view returns (uint256) {
         return participationFee;
+    }
+
+    function getWinner() public view returns (address) {
+        return winner;
     }
 
     //Access Restriction pattern to expiration time.
