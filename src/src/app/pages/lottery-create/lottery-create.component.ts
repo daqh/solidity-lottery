@@ -18,7 +18,7 @@ export class LotteryCreateComponent {
   lottery = {
     description: '',
     expiration: 0,
-    amount: 0,
+    prize: 0,
   };
 
   constructor(
@@ -27,7 +27,7 @@ export class LotteryCreateComponent {
   ) {}
 
   createLottery() {
-    this.lotteryFactoryService.createLottery(this.lottery.description, this.lottery.expiration, this.lottery.amount).then(value => {
+    this.lotteryFactoryService.createLottery(this.lottery.description, this.lottery.expiration, this.lottery.prize).then(value => {
       console.log(value);
       this.router.navigate(['/lottery']);
     });
