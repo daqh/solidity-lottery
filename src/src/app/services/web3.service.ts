@@ -17,10 +17,4 @@ export class Web3Service {
     return this.web3;
   }
 
-  async getLotteryContract() {
-    const networkId = await this.web3.eth.net.getId();
-    const deployedNetwork: any = LotteryContract.networks["5777"];
-    return new this.web3.eth.Contract(LotteryContract.abi, deployedNetwork && deployedNetwork.address);
-  }
-
 }

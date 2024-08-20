@@ -13,10 +13,4 @@ export class LotteryService {
     this.web3 = this.web3Service.getWeb3();
   }
 
-  async getTickets() {
-    const contract = await this.web3Service.getLotteryContract();
-    const ids = contract.methods['getTickets']().call();
-    return ids;
-  }
-
 }

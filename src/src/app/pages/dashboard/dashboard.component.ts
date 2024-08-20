@@ -16,9 +16,6 @@ export class DashboardComponent {
 
   constructor(private web3Service: Web3Service, private lotteryService: LotteryService) {
     this.web3 = this.web3Service.getWeb3();
-    this.lotteryService.getTickets().then((tickets: any) => {
-      console.log(tickets);
-    });
   }
 
 }
