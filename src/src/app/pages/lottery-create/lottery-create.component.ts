@@ -16,9 +16,10 @@ import { CommonModule } from '@angular/common';
 export class LotteryCreateComponent {
 
   lottery = {
-    description: '',
+    description: 'Lottery Name',
     expiration: 0,
     prize: 0,
+    participationFee: 0,
   };
 
   constructor(
@@ -34,6 +35,10 @@ export class LotteryCreateComponent {
   }
 
   onSubmit() {
+    if (this.lottery.description === '' || this.lottery.expiration === 0 || this.lottery.prize === 0 || this.lottery.participationFee === 0) {
+      alert('Please fill all the fields');
+      return;
+    }
     this.createLottery();
   }
 
