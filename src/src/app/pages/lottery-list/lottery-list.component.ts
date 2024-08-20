@@ -22,10 +22,4 @@ export class LotteryListComponent {
     });
   }
 
-  createLottery() {
-    this.lotteryFactoryService.createLottery().then(value => {
-      console.log(value);
-    });
-  }
-
 }

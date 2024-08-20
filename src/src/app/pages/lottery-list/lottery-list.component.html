@@ -14,6 +14,7 @@
 <ul class="list-group">
   <li class="list-group-item list-group-item-action" routerLink="/lottery/{{ lottery }}" *ngFor="let lottery of lotteries">
     <div><span class="lead">{{ lottery.id }}</span></div>
+    <div>{{ lottery.description }}</div>
     <div>balance {{ lottery.balance }}</div>
     <div>{{ lottery.owner }}</div>
   </li>

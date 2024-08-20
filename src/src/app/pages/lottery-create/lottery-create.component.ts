@@ -15,7 +15,10 @@ import { CommonModule } from '@angular/common';
 })
 export class LotteryCreateComponent {
 
-  lottery: any = {
+  lottery = {
+    description: '',
+    expiration: 0,
+    amount: 0,
   };
 
   constructor(
@@ -24,7 +27,7 @@ export class LotteryCreateComponent {
   ) {}
 
   createLottery() {
-    this.lotteryFactoryService.createLottery().then(value => {
+    this.lotteryFactoryService.createLottery(this.lottery.description, this.lottery.expiration, this.lottery.amount).then(value => {
       console.log(value);
       this.router.navigate(['/lottery']);
     });

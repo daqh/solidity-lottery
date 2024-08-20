@@ -15,15 +15,15 @@ export class LotteryFactoryService {
     this.web3 = web3Service.getWeb3();
   }
 
-  async createLottery() {
+  async createLottery(description: string, duration: number, amount: number) {
     const lotteryFactory = new this.web3.eth.Contract(LotteryFactoryContract.abi, LotteryFactoryContract.networks['5777'].address);
-    console.log(await lotteryFactory.methods['getBalance']().call());
     const accounts = await this.web3.eth.getAccounts();
     const account = accounts[0];
-    return await lotteryFactory.methods['createLottery']().send({
+    return await lotteryFactory.methods['createLottery'](description, duration, this.web3.utils.toWei(amount.toString(), "ether")).send({
       from: account,
       value: this.web3.utils.toWei('0.01', 'ether'),
-      gas: "6721975"
+      gas: "6721975",
+      
     });
   }
 
@@ -37,6 +37,7 @@ export class LotteryFactoryService {
         id: lotteryIds![i],
         balance: await lottery.methods['getBalance']().call(),
         owner: await lottery.methods['getOwner']().call(),
+        description: await lottery.methods['getDescription']().call(),
       })
     }
     return lotteries;
