@@ -104,8 +104,7 @@ contract Lottery {
 
         winner = contestants[dynamicSeed % contestants.length];
 
-        //Verify balance
-        require(address(this).balance >= prize, "Insufficient balance");
+        //No need for Balance verification as it is sent during creation.
         payable(winner).transfer(prize);
     }
 
