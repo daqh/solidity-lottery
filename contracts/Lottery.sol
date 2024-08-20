@@ -107,7 +107,7 @@ contract Lottery {
     function extractWinner() public onlyAfterRevealInterval onlyIfNotEnded{
         require(contestants.length > 0, "No participant revealed their number");
 
-        winner = contestants[uint256(dynamicSeed) % contestants.length];
+        winner = contestants[dynamicSeed % contestants.length];
 
         //Verify balance
         require(address(this).balance >= prize, "Insufficient balance");
