@@ -19,7 +19,7 @@ export class LotteryFactoryService {
     const lotteryFactory = new this.web3.eth.Contract(LotteryFactoryContract.abi, LotteryFactoryContract.networks['5777'].address);
     const accounts = await this.web3.eth.getAccounts();
     const account = accounts[0];
-    return await lotteryFactory.methods['createLottery'](description, duration).send({
+    return await lotteryFactory.methods['createLottery'](description, duration, this.web3.utils.toWei("0.01", "ether")).send({
       from: account,
       value: this.web3.utils.toWei(prize.toString(), "ether"),
       gas: "6721975",
@@ -37,6 +37,7 @@ export class LotteryFactoryService {
         balance: Number(await lottery.methods['getBalance']().call() as string) / 1e18,
         owner: await lottery.methods['getOwner']().call(),
         description: await lottery.methods['getDescription']().call(),
+        partecipationFee: Number(await lottery.methods['getPartecipationFee']().call() as string) / 1e18,
       })
     }
     return lotteries;

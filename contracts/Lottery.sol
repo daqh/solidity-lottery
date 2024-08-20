@@ -14,11 +14,14 @@ contract Lottery {
 
     address public winner;
 
-    constructor(address _manager, string memory _description, uint256 _expiration, uint256 _prize) {
+    uint256 public partecipationFee;
+
+    constructor(address _manager, string memory _description, uint256 _expiration, uint256 _prize, uint256 _partecipationFee) {
         manager = _manager;
         description = _description;
         expiration = _expiration;
         prize = _prize;
+        partecipationFee = _partecipationFee;
     }
 
     function getContestants() public view returns (address[] memory) {
@@ -45,7 +48,12 @@ contract Lottery {
         return prize;
     }
 
+    function getPartecipationFee() public view returns (uint256) {
+        return partecipationFee;
+    }
+
     //Access Restriction pattern to expiration time.
+
     /*
         Removed manager restriction so that the extraction
         can be performed by anyone, avoiding possible frauds.
@@ -81,7 +89,7 @@ contract Lottery {
     */
 
     function enter(uint256 number) public payable onlyBeforeExpiration {
-        require(msg.value >= .01 ether);
+        require(msg.value == partecipationFee, "Incorrect amount sent");
         require(commitments[msg.sender] == bytes32(0), "Address already entered");
 
         bytes32 commitment = keccak256(abi.encode(msg.sender, number));
