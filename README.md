@@ -16,7 +16,8 @@ Specifically, the lotteries are characterized by the following key features:
 ## Commit-Reveal Scheme
 
 ### How does it work?
-![solidity-lottery-cc](https://github.com/user-attachments/assets/1fc050b4-3ea3-47cf-9f25-d424fb1429eb)
+![solidity-lottery-cc(1)](https://github.com/user-attachments/assets/48b751b0-7469-416a-9475-6f78b76b409a)
+
 
 Lotteries are divided into 3 phases:
 
