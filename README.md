@@ -29,6 +29,7 @@ Lotteries are divided into 3 phases:
 ### How is it effective?
 
 As briefly mentioned above, a player cannot input a specific value for the purpose of winning the lottery as other players' chosen values are only revealed when the Commit phase ends.
+
 This means that the only way to purposely choose a number that leads to one's victory, would be to break the SHA3-256 hash algorithm and crack every players' number in a reasonable time, *impossible*.
 
 ## Build
