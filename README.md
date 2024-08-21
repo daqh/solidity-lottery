@@ -18,10 +18,18 @@ Specifically, the lotteries are characterized by the following key features:
 ### How does it work?
 ![solidity-lottery-cc](https://github.com/user-attachments/assets/1fc050b4-3ea3-47cf-9f25-d424fb1429eb)
 
+Lotteries are divided into 3 phases:
+
+1. During the **Commit phase**, players choose a value they *commit to*, this value is **secretly stored** as a commitment, which corresponds to the SHA3-256 digest of the combination of the *player's address* and their chosen value. During this phase, players pay the entry fee to the lottery manager.
+2. In the **Reveal phase**, players have to reveal their chosen numbers. Note that only from now on a player can see other players' chosen values, and no new player can enter the lottery. The revealed values are verified thanks to the initial commitments, thus **a player cannot cheat by revealing a different number**. If a player reveals their number correctly, they will be added for the extraction phase.
+3. Finally, in the **Extraction phase**, the revealed values are summed together in a single value used for extraction as `val mod participants.length`.
+
 > **_NOTE:_** Image released under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) License, please refer to [this project's license](LICENSE) for author attribution.
 
 ### How is it effective?
 
+As briefly mentioned above, a player cannot input a specific value for the purpose of winning the lottery as other players' chosen values are only revealed when the Commit phase ends.
+This means that the only way to purposely choose a number that leads to one's victory, would be to break the SHA3-256 hash algorithm and crack every players' number in a reasonable time, *impossible*.
 
 ## Build
 
