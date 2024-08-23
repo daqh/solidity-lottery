@@ -17,4 +17,10 @@ export class Web3Service {
     return this.web3;
   }
 
+  async getAccount() {
+    const accounts = await this.web3.eth.getAccounts();
+    const account = accounts[0];
+    return account;
+  }
+
 }
