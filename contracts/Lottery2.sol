@@ -79,7 +79,7 @@ contract Lottery {
     }
 
     function pickWinner() public onlyAfterRevealInterval returns (address) {
-        uint random = uint(keccak256(abi.encodePacked(block.prevrandao)));
+        uint random = uint(keccak256(abi.encodePacked(block.prevrandao, seed)));
         uint index = random % contestants.length;
         address winner = contestants[index];
         payable(winner).transfer(prize);
