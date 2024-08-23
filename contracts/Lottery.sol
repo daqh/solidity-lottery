@@ -60,12 +60,12 @@ contract Lottery {
     }
 
     function getEntries(address player) public view returns (uint256) {
-        uint256 numberEntries = 0;
+        uint256 entries = 0;
         for(uint i = 0; i < contestants.length; i++){
             if(contestants[i] == player)
-                numberEntries++;
+                entries++;
         }
-        return numberEntries;
+        return entries;
     }
 
 
