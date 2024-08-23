@@ -8,7 +8,7 @@
 The Solidity smart contract allows for community-based, decentralized lotteries to be arranged.
 Specifically, the lotteries are characterized by the following key features:
 
-- **Unpredictable randomness**, based on the *Commit-Reveal scheme*, rather than block-dependant values.
+- **Unpredictable, and non-manipulable randomness**, based on the *Commit-Reveal scheme*, rather than block-dependant values.
 - **Absent fraud risks**, thanks to the decentralized aspect of the lotteries, the manager has no exclusive control over lottery extraction and winner payment.
 - Players involvement in the extraction, since players committed numbers are direclty used in the winner extraction.
 - Automatic authentication through users' MetaMask crypto wallets.
@@ -31,7 +31,7 @@ Lotteries are divided into 3 phases:
 
 As briefly mentioned above, a player cannot input a specific value for the purpose of winning the lottery as other players' chosen values are only revealed when the Commit phase ends.
 
-This means that the only way to purposely choose a number that leads to one's victory, would be to break the SHA3-256 hash algorithm and crack every players' number in a reasonable time, *impossible*.
+This means that the only way to purposely choose a number that leads to one's victory, would be to brute force the SHA3-256 digests and "crack" every players' number in a reasonable time, *impossible*.
 
 ## Build
 
