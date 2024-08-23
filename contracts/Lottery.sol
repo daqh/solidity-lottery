@@ -9,8 +9,13 @@ contract Lottery {
     uint256 public prize;
     uint256 public participationFee;
 
+    struct commit {
+        bytes32 commitmentDigest;
+        uint256 numberOfEntries;
+    }
+
+    mapping (address => commit) public commitments;
     address[] public contestants;
-    mapping (address => bytes32) public commitments;
     uint256 public dynamicSeed;
 
     address public winner;
@@ -60,12 +65,17 @@ contract Lottery {
     }
 
     function getEntries(address player) public view returns (uint256) {
-        uint256 entries = 0;
+        return commitments[player].numberOfEntries;
+    }
+
+    function isParticipating(address player) public view returns (bool) {
         for(uint i = 0; i < contestants.length; i++){
             if(contestants[i] == player)
-                entries++;
+                return true;
         }
-        return entries;
+
+        return false;
+
     }
 
 
@@ -108,20 +118,27 @@ contract Lottery {
     function enter(uint256 number) public payable onlyBeforeExpiration {
         require(msg.value == participationFee, "Incorrect amount sent");
         /*
-            A player can enter multiple times to increase their chances/change their chosen number
+            A player can enter multiple times to increase their chances of winning.
+            If a player is recommitting, they will override their chosen number.
             require(commitments[msg.sender] == bytes32(0), "Address already entered");
         */
 
         bytes32 commitment = keccak256(abi.encode(msg.sender, number));
-        commitments[msg.sender] = commitment;
+        commitments[msg.sender].commitmentDigest = commitment;
+
+        //numberOfEntries is automatically initialized to 0.
+        commitments[msg.sender].numberOfEntries++;
+
     }
 
     function reveal(uint256 number) public onlyAfterExpiration onlyIfNotEnded{
         // Recreate the commitment and check if it matches the stored commitment
         bytes32 commitment = keccak256(abi.encode(msg.sender, number));
-        require(commitment == commitments[msg.sender], "Incorrect number for reveal commitment");
+        require(commitment == commitments[msg.sender].commitmentDigest, "Incorrect number for reveal commitment");
 
-        contestants.push(msg.sender);
+        for(uint i = 0; i < commitments[msg.sender].numberOfEntries; i++) {
+            contestants.push(msg.sender);
+        }
         //Increase Dynamic Seed with overflow protection.
         dynamicSeed = (dynamicSeed + number) % type(uint256).max;
     }
