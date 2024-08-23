@@ -59,6 +59,16 @@ contract Lottery {
         return winner;
     }
 
+    function getEntries(address player) public view returns (uint256) {
+        uint256 numberEntries = 0;
+        for(uint i = 0; i < contestants.length; i++){
+            if(contestants[i] == player)
+                numberEntries++;
+        }
+        return numberEntries;
+    }
+
+
     //Access Restriction pattern to expiration time.
 
     /*
@@ -97,7 +107,10 @@ contract Lottery {
 
     function enter(uint256 number) public payable onlyBeforeExpiration {
         require(msg.value == participationFee, "Incorrect amount sent");
-        require(commitments[msg.sender] == bytes32(0), "Address already entered");
+        /*
+            A player can enter multiple times to increase their chances/change their chosen number
+            require(commitments[msg.sender] == bytes32(0), "Address already entered");
+        */
 
         bytes32 commitment = keccak256(abi.encode(msg.sender, number));
         commitments[msg.sender] = commitment;
