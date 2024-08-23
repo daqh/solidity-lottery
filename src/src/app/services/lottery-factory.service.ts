@@ -40,7 +40,8 @@ export class LotteryFactoryService {
         participationFee: Number(await lottery.methods['getParticipationFee']().call() as string) / 1e18,
         prize: Number(await lottery.methods['getPrize']().call() as string) / 1e18,
         entries: Number(await lottery.methods['getEntries'](account).call()),
-      })
+        contestants: await lottery.methods['getContestants']().call(),
+      });
     }
     return lotteries;
   }
