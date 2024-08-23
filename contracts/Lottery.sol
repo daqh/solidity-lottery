@@ -27,7 +27,7 @@ contract Lottery {
         return contestants;
     }
 
-    function getOwner() public view returns (address) {
+    function getManager() public view returns (address) {
         return manager;
     }
 
@@ -59,7 +59,7 @@ contract Lottery {
         return winner;
     }
 
-    //Access Restriction pattern to expiration time.
+    // Access Restriction pattern to expiration time.
 
     /*
         Removed manager restriction so that the extraction
@@ -103,7 +103,7 @@ contract Lottery {
         commitments[msg.sender] = commitment;
     }
 
-    function reveal(uint256 number) public onlyAfterExpiration onlyIfNotEnded{
+    function reveal(uint256 number) public onlyAfterExpiration onlyIfNotEnded {
         // Recreate the commitment and check if it matches the stored commitment
         bytes32 commitment = keccak256(abi.encode(msg.sender, number));
         require(commitment == commitments[msg.sender], "Incorrect number for reveal commitment");
