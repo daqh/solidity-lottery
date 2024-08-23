@@ -18,17 +18,11 @@ export class LotteryService {
     const lottery = new this.web3.eth.Contract(LotteryContract.abi, id);
     const accounts = await this.web3.eth.getAccounts();
     const account = accounts[0];
-    return await lottery.methods['getParticipationFee']().call().then((fee) => {
-      const _fee = Number(fee).toString();
-      lottery.methods['enter'](45).send({
-        from: account,
-        value: _fee,
-        gas: "6721975",
-      }).then(() => {
-        alert('You have entered the lottery!');
-      }).catch((error) => {
-        alert('Error entering the lottery: ' + error);
-      });
+    const _fee = Number(await lottery.methods['getParticipationFee']().call()).toString();
+    return lottery.methods['enter'](45).send({
+      from: account,
+      value: _fee,
+      gas: "6721975",
     });
   }
 
