@@ -27,7 +27,7 @@ contract Lottery {
         return contestants;
     }
 
-    function getOwner() public view returns (address) {
+    function getManager() public view returns (address) {
         return manager;
     }
 

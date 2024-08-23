@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Web3Service } from './web3.service';
+import LotteryContract from '../../../../build/contracts/Lottery.json';
 import Web3 from 'web3';
 
 @Injectable({
@@ -11,6 +12,18 @@ export class LotteryService {
 
   constructor(private web3Service: Web3Service) {
     this.web3 = this.web3Service.getWeb3();
+  }
+
+  async enter(id: string) {
+    const lottery = new this.web3.eth.Contract(LotteryContract.abi, id);
+    const accounts = await this.web3.eth.getAccounts();
+    const account = accounts[0];
+    const _fee = Number(await lottery.methods['getParticipationFee']().call()).toString();
+    return lottery.methods['enter'](45).send({
+      from: account,
+      value: _fee,
+      gas: "6721975",
+    });
   }
 
 }
