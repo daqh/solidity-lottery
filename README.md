@@ -31,7 +31,7 @@ Lotteries are divided into 3 phases:
 
 As briefly mentioned above, a player cannot input a specific value for the purpose of winning the lottery as other players' chosen values are only revealed when the Commit phase ends.
 
-This means that the only way to purposely choose a number that leads to one's victory, would be to brute force the SHA3-256 digests and "crack" every players' number in a reasonable time, *impossible*.
+This means that the only way to purposely choose a number that leads to one's victory, would be to brute force the SHA3-256 digests and "crack" every players' number in a reasonable time, quite *impossible*.
 
 ## Build
 
