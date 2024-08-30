@@ -21,6 +21,7 @@ contract Lottery {
     address public winner;
 
     constructor(address _manager, string memory _description, uint256 durationHours, uint256 _prize, uint256 _participationFee) {
+        require(durationHours > 0, "Valid duration missing.");
         manager = _manager;
         description = _description;
         expiration = block.timestamp + durationHours * 1 hours;
