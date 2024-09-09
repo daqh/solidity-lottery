@@ -17,7 +17,7 @@ export class LotteryCreateComponent {
 
   lottery = {
     description: 'Lottery Name',
-    expiration: 0,
+    expiration: "null",
     prize: 0,
     participationFee: 0,
   };
@@ -25,17 +25,24 @@ export class LotteryCreateComponent {
   constructor(
     private lotteryFactoryService: LotteryFactoryService,
     private router: Router
-  ) {}
+  ) {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    const now_string = now.toISOString().slice(0, 19);
+    this.lottery.expiration = now_string;
+  }
 
   createLottery() {
-    this.lotteryFactoryService.createLottery(this.lottery.description, this.lottery.expiration, this.lottery.prize).then(value => {
+    const expiration = Math.floor(new Date(this.lottery.expiration).getTime() / 1000 - new Date().getTime() / 1000);
+    this.lotteryFactoryService.createLottery(this.lottery.description, expiration, this.lottery.prize).then(value => {
       console.log(value);
       this.router.navigate(['/lottery']);
     });
   }
 
   onSubmit() {
-    if (this.lottery.description === '' || this.lottery.expiration === 0 || this.lottery.prize === 0 || this.lottery.participationFee === 0) {
+    const expiration = Math.floor(new Date(this.lottery.expiration).getTime() / 1000 - new Date().getTime() / 1000);
+    if (this.lottery.description === '' || expiration === 0 || this.lottery.prize === 0 || this.lottery.participationFee === 0) {
       alert('Please fill all the fields');
       return;
     }

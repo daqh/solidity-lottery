@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-lottery-detail',
   standalone: true,
   imports: [
-    RouterLink, FormsModule,
+    RouterLink, FormsModule, NgIf, NgClass
   ],
   templateUrl: './lottery-detail.component.html',
   styleUrl: './lottery-detail.component.css',
@@ -15,6 +16,8 @@ import { LotteryService } from '../../services/lottery.service';
 export class LotteryDetailComponent implements OnInit {
 
   id?: string;
+  lottery: any = {};
+  isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,12 +27,26 @@ export class LotteryDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
+      this.lotteryService.getLottery(this.id!).then(lottery => {
+        this.lottery = lottery;
+        this.isLoading = false;
+      });
     });
+  }
+
+  isOver() {
+    return new Date() > this.lottery.expiration;
   }
 
   onSubmit() {
     this.lotteryService.enter(this.id!).then(() => {
       alert('You have entered the lottery!');
+    });
+  }
+
+  onReveal() {
+    this.lotteryService.reveal(this.id!).then(() => {
+      
     });
   }
 

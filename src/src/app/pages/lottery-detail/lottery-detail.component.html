@@ -1,8 +1,22 @@
 <a routerLink="/dashboard">Dashboard</a> >
 <a routerLink="/lottery">Lottery</a>
 
+<div *ngIf="isLoading">
+    <div class="spinner-border text-primary" role="status">
+    </div>
+    <span class="lead">Loading...</span>
+</div>
+
+<h2>{{ lottery.description }}<h2>
+
 <form (ngSubmit)="onSubmit()">
-    <button class="btn btn-primary">
-        Enter the lottery
+    <button class="btn btn-primary" [ngClass]="{ 'disabled': isOver() || isLoading }">
+        Enter
+    </button>
+</form>
+
+<form (ngSubmit)="onReveal()">
+    <button class="btn btn-primary" [ngClass]="{ 'disabled': !isOver() || isLoading }">
+        Reveal
     </button>
 </form>

@@ -3,36 +3,26 @@ pragma solidity ^0.8.0;
 
 contract Lottery {
 
-    address public manager;
-    string public description;
-    uint256 public expiration;
-    uint256 public prize;
-    uint256 public participationFee;
+    address private manager;
+    string private description;
+    uint256 private expiration;
+    uint256 private prize;
+    uint256 private participationFee;
+    address[] private contestants;
+    mapping(address => bytes32[]) private commitments;
+    uint256[] private reveals;
 
-    address[] public contestants;
-    mapping (address => bytes32) public commitments;
-    uint256 public dynamicSeed;
-
-    address public winner;
-
-    constructor(address _manager, string memory _description, uint256 durationHours, uint256 _prize, uint256 _participationFee) {
+    constructor(address _manager, string memory _description, uint256 _expiration, uint256 _prize, uint256 _participationFee) {
+        require(_expiration > 0, "Expiration must be greater than 0");
         manager = _manager;
         description = _description;
-        expiration = block.timestamp + durationHours * 1 hours;
+        expiration = block.timestamp + _expiration;
         prize = _prize;
         participationFee = _participationFee;
     }
 
-    function getContestants() public view returns (address[] memory) {
-        return contestants;
-    }
-
     function getManager() public view returns (address) {
         return manager;
-    }
-
-    function getBalance() public view returns (uint256) {
-        return address(this).balance;
     }
 
     function getDescription() public view returns (string memory) {
@@ -43,10 +33,6 @@ contract Lottery {
         return expiration;
     }
 
-    function isLotteryOngoing() public view returns (bool) {
-        return block.timestamp < expiration;
-    }
-
     function getPrize() public view returns (uint256) {
         return prize;
     }
@@ -55,35 +41,28 @@ contract Lottery {
         return participationFee;
     }
 
+    function getContestants() public view returns (address[] memory) {
+        return contestants;
+    }
+
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    function isLotteryOngoing() public view returns (bool) {
+        return block.timestamp < expiration;
+    }
+
     function getWinner() public view returns (address) {
-        return winner;
+        return manager;
     }
 
-    function getEntries(address player) public view returns (uint256) {
-        uint256 entries = 0;
-        for(uint i = 0; i < contestants.length; i++){
-            if(contestants[i] == player)
-                entries++;
-        }
-        return entries;
+    function getEntries() public view returns (uint256) {
+        return contestants.length;
     }
 
-
-    //Access Restriction pattern to expiration time.
-
-    /*
-        Removed manager restriction so that the extraction
-        can be performed by anyone, avoiding possible frauds.
-    */
-
-    modifier onlyAfterExpiration() {
-        require(block.timestamp >= expiration);
-        _;
-    }
-
-    modifier onlyAfterRevealInterval() {
-        require(block.timestamp >= expiration + 1 days);
-        _;
+    function isOver() public view returns (bool) {
+        return block.timestamp >= expiration;
     }
 
     modifier onlyBeforeExpiration() {
@@ -91,52 +70,31 @@ contract Lottery {
         _;
     }
 
-    modifier onlyIfNotEnded() {
-        require(winner == address(0));
+    modifier onlyAfterRevealInterval() {
+        require(block.timestamp >= expiration);
         _;
     }
 
-    /*
-        Provide de-centralized, low-cost, unpredictable randomness
-        by Commit-Reveal Scheme.
-
-        It is not exploitable as a contestant has to choose a number before
-        knowing other contestants' chosen values.
-
-    */
-
-    function enter(uint256 number) public payable onlyBeforeExpiration {
-        require(msg.value == participationFee, "Incorrect amount sent");
-        /*
-            A player can enter multiple times to increase their chances/change their chosen number
-            require(commitments[msg.sender] == bytes32(0), "Address already entered");
-        */
-
-        bytes32 commitment = keccak256(abi.encode(msg.sender, number));
-        commitments[msg.sender] = commitment;
-    }
-
-    function reveal(uint256 number) public onlyAfterExpiration onlyIfNotEnded{
-        // Recreate the commitment and check if it matches the stored commitment
-        bytes32 commitment = keccak256(abi.encode(msg.sender, number));
-        require(commitment == commitments[msg.sender], "Incorrect number for reveal commitment");
-
+    function enter(bytes32 choice) public payable onlyBeforeExpiration { // This is the commit phase of the commit-reveal scheme
+        require(msg.value == participationFee, "Participation fee is required");
         contestants.push(msg.sender);
-        //Increase Dynamic Seed with overflow protection.
-        dynamicSeed = (dynamicSeed + number) % type(uint256).max;
+        commitments[msg.sender].push(choice);
     }
 
-    function extractWinner() public onlyAfterRevealInterval onlyIfNotEnded{
-        require(contestants.length > 0, "No participant revealed their number");
-
-        winner = contestants[dynamicSeed % contestants.length];
-
-        //No need for Balance verification as it is sent during creation.
-        payable(winner).transfer(prize);
+    function reveal(uint256 choosenNumber, uint256 salt) public onlyAfterRevealInterval { // This is the reveal phase of the commit-reveal scheme
+        for (uint256 i = 0; i < commitments[msg.sender].length; i++) {
+            if (keccak256(abi.encodePacked(msg.sender, choosenNumber, salt)) == commitments[msg.sender][i]) {
+                reveals.push(choosenNumber); 
+                commitments[msg.sender][i] = commitments[msg.sender][commitments[msg.sender].length - 1]; // Remove the commitment
+                commitments[msg.sender].pop();
+                return;
+            }
+        }
+        revert("Invalid choice");
     }
 
     receive() external payable {}
 
     fallback() external payable {}
-
+    
 }

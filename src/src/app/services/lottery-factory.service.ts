@@ -41,6 +41,8 @@ export class LotteryFactoryService {
         prize: Number(await lottery.methods['getPrize']().call() as string) / 1e18,
         entries: Number(await lottery.methods['getEntries'](account).call()),
         contestants: await lottery.methods['getContestants']().call(),
+        expiration: new Date(Number(await lottery.methods['getExpiration']().call()) * 1000),
+        isOver: await lottery.methods['isOver']().call(),
       });
     }
     return lotteries;
