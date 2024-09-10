@@ -4,7 +4,13 @@
     <span class="lead">Loading...</span>
 </div>
 
-<h2>{{ lottery.description }}<h2>
+<h2>{{ lottery.description }}</h2>
+
+<ul>
+    <li *ngFor="let ticket of tickets">
+        {{ ticket.number }} - {{ ticket.salt }}
+    </li>
+</ul>
 
 <form (ngSubmit)="onSubmit()">
     <button class="btn btn-primary" [ngClass]="{ 'disabled': isOver() || isLoading }">
@@ -13,7 +19,7 @@
 </form>
 
 <form (ngSubmit)="onReveal()">
-    <button class="btn btn-primary" [ngClass]="{ 'disabled': !isOver() || isLoading }">
+    <button class="btn btn-primary" [ngClass]="{ 'disabled': !isOver() || isLoading || hasNoTickets() }">
         Reveal
     </button>
 </form>

@@ -6,17 +6,19 @@ contract Lottery {
     address private manager;
     string private description;
     uint256 private expiration;
+    uint256 private revealWindow;
     uint256 private prize;
     uint256 private participationFee;
     address[] private contestants;
     mapping(address => bytes32[]) private commitments;
     uint256[] private reveals;
 
-    constructor(address _manager, string memory _description, uint256 _expiration, uint256 _prize, uint256 _participationFee) {
+    constructor(address _manager, string memory _description, uint256 _expiration, uint256 _revealWindow, uint256 _prize, uint256 _participationFee) {
         require(_expiration > 0, "Expiration must be greater than 0");
         manager = _manager;
         description = _description;
         expiration = block.timestamp + _expiration;
+        revealWindow = expiration + _revealWindow;
         prize = _prize;
         participationFee = _participationFee;
     }
@@ -31,6 +33,10 @@ contract Lottery {
 
     function getExpiration() public view returns (uint256) {
         return expiration;
+    }
+
+    function getRevealWindow() public view returns (uint256) {
+        return revealWindow;
     }
 
     function getPrize() public view returns (uint256) {
@@ -70,8 +76,18 @@ contract Lottery {
         _;
     }
 
-    modifier onlyAfterRevealInterval() {
+    modifier onlyAfterExpiration() {
         require(block.timestamp >= expiration);
+        _;
+    }
+
+    modifier onlyBeforeRevealWindow() {
+        require(block.timestamp < revealWindow);
+        _;
+    }
+
+    modifier onlyAfterRevealWindow() {
+        require(block.timestamp >= revealWindow);
         _;
     }
 
@@ -81,7 +97,7 @@ contract Lottery {
         commitments[msg.sender].push(choice);
     }
 
-    function reveal(uint256 choosenNumber, uint256 salt) public onlyAfterRevealInterval { // This is the reveal phase of the commit-reveal scheme
+    function reveal(uint256 choosenNumber, uint256 salt) public onlyAfterExpiration onlyBeforeRevealWindow { // This is the reveal phase of the commit-reveal scheme
         for (uint256 i = 0; i < commitments[msg.sender].length; i++) {
             if (keccak256(abi.encodePacked(msg.sender, choosenNumber, salt)) == commitments[msg.sender][i]) {
                 reveals.push(choosenNumber); 
@@ -91,6 +107,25 @@ contract Lottery {
             }
         }
         revert("Invalid choice");
+    }
+
+    function pickWinner() public view onlyAfterRevealWindow returns (address) {
+        require(reveals.length > 0, "No reveals");
+        // We should use a commutative method to calculate the winner.
+        // If we use a non-commutativve method, we permit the ability to manipulate the result by
+        // choosing an order that is more favorable to the attacker
+        uint256 sum = 0;
+        for (uint256 i = 0; i < reveals.length; i++) {
+            sum += reveals[i];
+        }
+        uint256 winnerIndex = uint256(keccak256(abi.encodePacked(sum))) % reveals.length;
+        return contestants[winnerIndex];
+    }
+
+    function withdraw() public onlyAfterRevealWindow {
+        address payable winner = payable(pickWinner());
+        require(msg.sender == winner, "Only the winner can withdraw the prize");
+        winner.transfer(prize);
     }
 
     receive() external payable {}
