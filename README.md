@@ -16,14 +16,15 @@ Specifically, the lotteries are characterized by the following key features:
 ## Commit-Reveal Scheme
 
 ### How does it work?
-![solidity-lottery-cc(1)](https://github.com/user-attachments/assets/48b751b0-7469-416a-9475-6f78b76b409a)
+![solidity-lottery](https://github.com/user-attachments/assets/e34b8f41-3098-4f11-ab03-2c5a27384fb4)
+
 
 
 Lotteries are divided into 3 phases:
 
-1. During the **Commit phase**, players choose a value they *commit to*, this value is **secretly stored** as a commitment, which corresponds to the SHA3-256 digest of the combination of the *player's address* and their chosen value. During this phase, players pay the entry fee to the lottery manager.
-2. In the **Reveal phase**, players have to reveal their chosen numbers. Note that only from now on a player can see other players' chosen values, and no new player can enter the lottery. The revealed values are verified thanks to the initial commitments, thus **a player cannot cheat by revealing a different number**. If a player reveals their number correctly, they will be added for the extraction phase.
-3. Finally, in the **Extraction phase**, the revealed values are summed together in a single value used for extraction as `val mod participants.length`.
+1. During the **Commit phase**, players choose a value they *commit to*, this value is **secretly stored** as a commitment, which corresponds to the SHA3-256 digest of the combination of the *player's address* + their chosen value + a *salt* for increased security. During this phase, players pay the entry fee to the lottery manager.
+2. In the **Reveal phase**, players have to reveal their chosen numbers. The new hash is still calculated from the revealed number + salt + the player's wallet address, which also acts as an authentication method. Note that only from now on a player can see other players' chosen values, and no new player can enter the lottery. The revealed values are verified thanks to the initial commitments, thus **a player cannot cheat by revealing a different number**. If a player reveals their number correctly, they will be added for the extraction phase.
+3. Finally, in the **Extraction phase**, the revealed values are summed together in a single value used for extraction as `val mod participants.length`. 
 
 > **_NOTE:_** Image released under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) License, please refer to [this project's license](LICENSE) for author attribution.
 
