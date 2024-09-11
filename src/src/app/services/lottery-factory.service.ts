@@ -33,7 +33,7 @@ export class LotteryFactoryService {
     const lotteries: any[] = []
     for (let i = 0; i < lotteryIds!.length; i++) {
       const lottery = new this.web3.eth.Contract(LotteryContract.abi, lotteryIds![i]);
-      lotteries.push({
+      const data = {
         id: lotteryIds![i],
         balance: Number(await lottery.methods['getBalance']().call() as string) / 1e18,
         manager: await lottery.methods['getManager']().call(),
@@ -45,8 +45,14 @@ export class LotteryFactoryService {
         contestants: await lottery.methods['getContestants']().call(),
         expiration: new Date(Number(await lottery.methods['getExpiration']().call()) * 1000),
         revealWindow: new Date(Number(await lottery.methods['getRevealWindow']().call()) * 1000),
-        isOver: await lottery.methods['isOver']().call(),
-      });
+        isExpirationOver: await lottery.methods['isExpirationOver']().call(),
+        isRevealWindowOver: await lottery.methods['isRevealWindowOver']().call(),
+        winner: null,
+      }
+      if(data.isRevealWindowOver) {
+        data.winner = await lottery.methods['getWinner']().call();
+      }
+      lotteries.push(data);
     }
     return lotteries;
   }

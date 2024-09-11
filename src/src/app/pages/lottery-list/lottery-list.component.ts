@@ -35,14 +35,14 @@ export class LotteryListComponent {
       });
       for (const lottery of this.lotteries) {
         lottery.expirationDelta = moment(lottery.expiration).fromNow();
-        lottery.isOver = moment(lottery.expiration).isBefore(moment());
+        lottery.isExpirationOver = moment(lottery.expiration).isBefore(moment());
         lottery.revealWindowDelta = moment(lottery.revealWindow).fromNow();
         lottery.isRevealWindowOver = moment(lottery.revealWindow).isBefore(moment());
       }
       timer(0, 1000).subscribe(() => {
         for (const lottery of this.lotteries) {
           lottery.remainingTime = moment(lottery.expiration).fromNow();
-          lottery.isOver = moment(lottery.expiration).isBefore(moment());
+          lottery.isExpirationOver = moment(lottery.expiration).isBefore(moment());
         }
       });
     });

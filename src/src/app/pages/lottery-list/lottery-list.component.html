@@ -20,7 +20,8 @@
     <div>Reveal Window {{ lottery.revealWindowDelta }} ({{ lottery.revealWindow|date:'medium' }})</div>
     <div>Owned tickets: {{ lottery.tickets }}</div>
     <div>Contestants {{ lottery.contestants.length }}</div>
-    <div>isOver {{ lottery.isOver }}</div>
+    <div>isOver {{ lottery.isExpirationOver }}</div>
+    <div>isRevealOver {{ lottery.isRevealWindowOver }}</div>
     <hr>
     <button class="btn btn-primary">Enter this Lottery</button>
   </li>

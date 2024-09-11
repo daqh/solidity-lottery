@@ -37,18 +37,22 @@ export class LotteryDetailComponent implements OnInit {
       this.lotteryService.getLottery(this.id!).then(lottery => {
         this.lottery = lottery;
         this.isLoading = false;
+        this.lottery.expirationDelta = moment(this.lottery.expiration).fromNow();
+        this.lottery.isExpirationOver = moment(this.lottery.expiration).isBefore(moment());
+        this.lottery.revealWindowDelta = moment(this.lottery.revealWindow).fromNow();
+        this.lottery.isRevealWindowOver = moment(this.lottery.revealWindow).isBefore(moment());
+        timer(0, 1000).subscribe(() => {
+          this.lottery.expirationDelta = moment(this.lottery.expiration).fromNow();
+          this.lottery.isExpirationOver = moment(this.lottery.expiration).isBefore(moment());
+          this.lottery.revealWindowDelta = moment(this.lottery.revealWindow).fromNow();
+          this.lottery.isRevealWindowOver = moment(this.lottery.revealWindow).isBefore(moment());
+        });
       });
     });
     this.web3Service.getAccount().subscribe(account => {
       this.account = account;
       this.tickets = this.getTickets(this.account);
       this.ngZone.run(() => {});
-    });
-    timer(0, 1000).subscribe(() => {
-      this.lottery.expirationDelta = moment(this.lottery.expiration).fromNow();
-      this.lottery.isOver = moment(this.lottery.expiration).isBefore(moment());
-      this.lottery.revealWindowDelta = moment(this.lottery.revealWindow).fromNow();
-      this.lottery.isRevealWindowOver = moment(this.lottery.revealWindow).isBefore(moment());
     });
   }
 
@@ -91,6 +95,16 @@ export class LotteryDetailComponent implements OnInit {
     this.lotteryService.reveal(this.id!).then(() => {
       this.tickets = this.getTickets(this.account!);
     });
+  }
+
+  canWithdraw() {
+    if (this.lottery.winner === null) {
+      return false;
+    } else if (this.lottery.isRevealWindowOver && this.lottery.reveals.length === 0) {
+      return this.account === this.lottery.manager;
+    } else {
+      return this.lottery.winner === this.account;
+    }
   }
 
 }

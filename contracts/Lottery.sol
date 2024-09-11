@@ -71,8 +71,12 @@ contract Lottery {
         return reveals;
     }
 
-    function isOver() public view returns (bool) {
+    function isExpirationOver() public view returns (bool) {
         return block.timestamp >= expiration;
+    }
+
+    function isRevealWindowOver() public view returns (bool) {
+        return block.timestamp >= revealWindow;
     }
 
     modifier onlyBeforeExpiration() {
