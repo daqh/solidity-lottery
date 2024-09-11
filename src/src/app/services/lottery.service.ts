@@ -24,16 +24,17 @@ export class LotteryService {
 
   async getLottery(id: string) {
     const lottery = new this.web3.eth.Contract(LotteryContract.abi, id);
-    const account = await this.web3Service.getAccount();
     return {
       id: id,
       balance: Number(await lottery.methods['getBalance']().call() as string) / 1e18,
       manager: await lottery.methods['getManager']().call(),
+      isManager: await lottery.methods['getManager']().call() === this.account,
       description: await lottery.methods['getDescription']().call(),
       participationFee: Number(await lottery.methods['getParticipationFee']().call() as string) / 1e18,
       prize: Number(await lottery.methods['getPrize']().call() as string) / 1e18,
-      entries: Number(await lottery.methods['getEntries'](account).call()),
+      entries: Number(await lottery.methods['getEntries'](this.account).call()),
       contestants: await lottery.methods['getContestants']().call(),
+      reveals: await lottery.methods['getReveals']().call(),
       expiration: new Date(Number(await lottery.methods['getExpiration']().call()) * 1000),
       isOver: await lottery.methods['isOver']().call(),
     };
@@ -49,7 +50,10 @@ export class LotteryService {
     if (!(this.account in otherChoices)) {
       otherChoices[this.account] = {};
     }
-    otherChoices[this.account][choosenNumber] = salt;
+    otherChoices[this.account][choosenNumber] = {
+      salt,
+      revealed: false,
+    };
     const lottery = new this.web3.eth.Contract(LotteryContract.abi, id);
     if (await lottery.methods['isOver']().call()) {
       throw new Error('The lottery is over');

@@ -4,6 +4,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Web3Service } from '../../services/web3.service';
+import { timer } from 'rxjs';
+import moment from 'moment';
 
 @Component({
   selector: 'app-lottery-detail',
@@ -42,6 +44,10 @@ export class LotteryDetailComponent implements OnInit {
       this.tickets = this.getTickets(this.account);
       this.ngZone.run(() => {});
     });
+    timer(0, 1000).subscribe(() => {
+      this.lottery.remainingTime = moment(this.lottery.expiration).fromNow();
+      this.lottery.isOver = moment(this.lottery.expiration).isBefore(moment());
+    });
   }
 
   isOver() {
@@ -65,7 +71,7 @@ export class LotteryDetailComponent implements OnInit {
     const tickets = [];
     // console.log(account, choices, choices[account]);
     for (let key in accountChoices) {
-      tickets.push({ number: key, salt: accountChoices[key] });
+      tickets.push({ number: key, ...accountChoices[key] });
     }
     return tickets;
   }

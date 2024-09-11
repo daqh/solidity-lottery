@@ -37,6 +37,7 @@ export class LotteryFactoryService {
         id: lotteryIds![i],
         balance: Number(await lottery.methods['getBalance']().call() as string) / 1e18,
         manager: await lottery.methods['getManager']().call(),
+        isManager: await lottery.methods['getManager']().call() === this.account,
         description: await lottery.methods['getDescription']().call(),
         participationFee: Number(await lottery.methods['getParticipationFee']().call() as string) / 1e18,
         prize: Number(await lottery.methods['getPrize']().call() as string) / 1e18,

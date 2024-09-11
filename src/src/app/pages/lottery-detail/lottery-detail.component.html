@@ -6,20 +6,34 @@
 
 <h2>{{ lottery.description }}</h2>
 
+<div *ngIf="lottery.isManager">
+    You are the manager of this lottery!
+</div>
+
+<div>
+    <p class="lead">Expiration {{ lottery.remainingTime }}</p>
+    <p class="lead">{{ lottery.contestants?.length }} contestants</p>
+    <p class="lead">{{ lottery.reveals?.length }} revealed tickets</p>
+</div>
+
+<h3>Your tickets</h3>
+
 <ul>
     <li *ngFor="let ticket of tickets">
-        {{ ticket.number }} - {{ ticket.salt }}
+        {{ ticket.number }} - {{ ticket.salt }} {{ ticket.revealed }}
     </li>
 </ul>
 
-<form (ngSubmit)="onSubmit()">
-    <button class="btn btn-primary" [ngClass]="{ 'disabled': isOver() || isLoading }">
-        Enter
-    </button>
-</form>
-
-<form (ngSubmit)="onReveal()">
-    <button class="btn btn-primary" [ngClass]="{ 'disabled': !isOver() || isLoading || hasNoTickets() }">
-        Reveal
-    </button>
-</form>
+<div class="row">
+    <form class="d-grid col" (ngSubmit)="onSubmit()">
+        <button class="btn btn-primary" [ngClass]="{ 'disabled': isOver() || isLoading }">
+            Enter
+        </button>
+    </form>
+    
+    <form class="d-grid col" (ngSubmit)="onReveal()">
+        <button class="btn btn-primary" [ngClass]="{ 'disabled': !isOver() || isLoading || hasNoTickets() }">
+            Reveal
+        </button>
+    </form>
+</div>

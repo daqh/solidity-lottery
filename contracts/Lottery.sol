@@ -67,6 +67,10 @@ contract Lottery {
         return contestants.length;
     }
 
+    function getReveals() public view returns (uint256[] memory) {
+        return reveals;
+    }
+
     function isOver() public view returns (bool) {
         return block.timestamp >= expiration;
     }
