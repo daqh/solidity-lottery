@@ -12,6 +12,9 @@ export class Web3Service {
 
   constructor() {
     this.web3 = new Web3((window as any).ethereum);
+    this.web3.eth.provider!.on('accountsChanged', (accounts: string[]) => {
+      window.location.reload();
+    });
   }
 
   getWeb3() {
@@ -21,10 +24,7 @@ export class Web3Service {
   getAccount() {
     return new Observable<string>((observer) => {
       this.web3.eth.getAccounts().then(accounts => {
-        observer.next(accounts[0].toLowerCase());
-        this.web3.eth.provider!.on('accountsChanged', (accounts: string[]) => {
-          observer.next(accounts[0].toLowerCase());
-        });
+        observer.next(accounts[0]);
       });
     });
   }
