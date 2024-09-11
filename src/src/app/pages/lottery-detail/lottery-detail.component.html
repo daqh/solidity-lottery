@@ -18,9 +18,14 @@
 
 <h3>Your tickets</h3>
 
-<ul>
-    <li *ngFor="let ticket of tickets">
-        {{ ticket.number }} - {{ ticket.salt }} {{ ticket.revealed }}
+<div>
+    <p class="lead">You owe {{ tickets.length }} tickets</p>
+</div>
+
+<ul class="list-group mb-3">
+    <li *ngFor="let ticket of tickets" class="list-group-item" [ngClass]="{ 'list-group-item-success': ticket.revealed }">
+        {{ ticket.number }} - {{ ticket.salt }}
+        <div *ngIf="ticket.revealed">Ticket has been revealed</div>
     </li>
 </ul>
 

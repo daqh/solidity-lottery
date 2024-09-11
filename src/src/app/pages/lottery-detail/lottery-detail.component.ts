@@ -77,12 +77,17 @@ export class LotteryDetailComponent implements OnInit {
   }
 
   hasNoTickets() {
-    return this.tickets.length === 0;
+    for (let key in this.tickets) {
+      if (this.tickets[key].revealed === false) {
+        return false;
+      }
+    }
+    return true;
   }
 
   onReveal() {
     this.lotteryService.reveal(this.id!).then(() => {
-      
+      this.tickets = this.getTickets(this.account!);
     });
   }
 

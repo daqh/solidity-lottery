@@ -75,18 +75,23 @@ export class LotteryService {
     const account = accounts[0];
     const accountChoices = choices[account];
     for (const choosenNumber in accountChoices) {
-      const salt = accountChoices[choosenNumber];
+      const choice = accountChoices[choosenNumber];
+      const { salt, revealed } = choice;
+      if (revealed) {
+        continue;
+      }
       try {
         const result = await lottery.methods['reveal'](choosenNumber, salt).send({
           from: account,
           gas: "6721975",
         });
         console.log(result);
+        choice.revealed = true;
       } catch (e) {
         console.error(e);
       }
     }
-    localStorage.removeItem(id);
+    localStorage.setItem(id, JSON.stringify(choices));
   }
 
 }
