@@ -11,7 +11,8 @@
 </div>
 
 <div>
-    <p class="lead">Expiration {{ lottery.remainingTime }}</p>
+    <p *ngIf="!lottery.isOver" class="lead">Expiration {{ lottery.expirationDelta }} ({{ lottery.expiration|date:'medium' }})</p>
+    <p *ngIf="!lottery.isRevealWindowOver" class="lead">Reveal window {{ lottery.revealWindowDelta }} ({{ lottery.revealWindow|date:'medium' }})</p>
     <p class="lead">{{ lottery.contestants?.length }} contestants</p>
     <p class="lead">{{ lottery.reveals?.length }} revealed tickets</p>
 </div>

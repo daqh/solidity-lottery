@@ -2,7 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
 import { Web3Service } from '../../services/web3.service';
 import { timer } from 'rxjs';
 import moment from 'moment';
@@ -11,7 +11,7 @@ import moment from 'moment';
   selector: 'app-lottery-detail',
   standalone: true,
   imports: [
-    RouterLink, FormsModule, NgIf, NgClass, NgFor,
+    CommonModule, RouterLink, FormsModule, NgIf, NgClass, NgFor,
   ],
   templateUrl: './lottery-detail.component.html',
   styleUrl: './lottery-detail.component.css',
@@ -45,8 +45,10 @@ export class LotteryDetailComponent implements OnInit {
       this.ngZone.run(() => {});
     });
     timer(0, 1000).subscribe(() => {
-      this.lottery.remainingTime = moment(this.lottery.expiration).fromNow();
+      this.lottery.expirationDelta = moment(this.lottery.expiration).fromNow();
       this.lottery.isOver = moment(this.lottery.expiration).isBefore(moment());
+      this.lottery.revealWindowDelta = moment(this.lottery.revealWindow).fromNow();
+      this.lottery.isRevealWindowOver = moment(this.lottery.revealWindow).isBefore(moment());
     });
   }
 

@@ -7,7 +7,7 @@
 <hr>
 
 <ul class="list-group mb-3">
-  <li class="list-group-item list-group-item-action" routerLink="/lottery/{{ lottery.id }}" *ngFor="let lottery of lotteries" [ngClass]="{'list-group-item-danger': lottery.isOver, 'border-primary': lottery.isManager}">
+  <li class="list-group-item list-group-item-action" routerLink="/lottery/{{ lottery.id }}" *ngFor="let lottery of lotteries" [ngClass]="{'list-group-item-success': lottery.isOver && !lottery.isRevealWindowOver, 'list-group-item-danger': lottery.isOver && lottery.isRevealWindowOver, 'border-primary': lottery.isManager}">
     <h3 class="display-3">{{ lottery.description }}</h3>
     <div *ngIf="lottery.isManager">You are the manager</div>
     <div>{{ lottery.id }}</div>
@@ -16,8 +16,8 @@
     <div>Participation Fee {{ lottery.participationFee }} ETH</div>
     <div>Manager {{ lottery.manager }}</div>
     <div>Entries {{ lottery.entries }}</div>
-    <div>Expiration {{ lottery.expiration }}</div>
-    <div>Expiration: {{ lottery.remainingTime }}</div>
+    <div>Expiration {{ lottery.expirationDelta }} ({{ lottery.expiration|date:'medium' }})</div>
+    <div>Reveal Window {{ lottery.revealWindowDelta }} ({{ lottery.revealWindow|date:'medium' }})</div>
     <div>Owned tickets: {{ lottery.tickets }}</div>
     <div>Contestants {{ lottery.contestants.length }}</div>
     <div>isOver {{ lottery.isOver }}</div>

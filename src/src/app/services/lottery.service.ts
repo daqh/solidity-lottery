@@ -36,6 +36,7 @@ export class LotteryService {
       contestants: await lottery.methods['getContestants']().call(),
       reveals: await lottery.methods['getReveals']().call(),
       expiration: new Date(Number(await lottery.methods['getExpiration']().call()) * 1000),
+      revealWindow: new Date(Number(await lottery.methods['getRevealWindow']().call()) * 1000),
       isOver: await lottery.methods['isOver']().call(),
     };
   }

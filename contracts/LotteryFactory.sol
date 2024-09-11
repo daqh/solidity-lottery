@@ -8,7 +8,7 @@ contract LotteryFactory {
     Lottery[] public lotteries;
 
     function createLottery(string memory _description, uint256 _expiration, uint256 participationFee) public payable returns (Lottery) {
-        Lottery lottery = new Lottery(msg.sender, _description, _expiration, 24 hours, msg.value, participationFee);
+        Lottery lottery = new Lottery(msg.sender, _description, _expiration, 30 minutes, msg.value, participationFee);
         // Forward the received amount to the new lottery
         address payable lotteryAddress = payable(address(lottery));
         lotteryAddress.transfer(msg.value);
