@@ -105,10 +105,10 @@ contract Lottery {
         commitments[msg.sender].push(choice);
     }
 
-    function reveal(uint256 choosenNumber, uint256 salt) public onlyAfterExpiration onlyBeforeRevealWindow { // This is the reveal phase of the commit-reveal scheme
+    function reveal(uint256 chosenNumber, uint256 salt) public onlyAfterExpiration onlyBeforeRevealWindow { // This is the reveal phase of the commit-reveal scheme
         for (uint256 i = 0; i < commitments[msg.sender].length; i++) {
-            if (keccak256(abi.encodePacked(msg.sender, choosenNumber, salt)) == commitments[msg.sender][i]) {
-                reveals.push(choosenNumber); 
+            if (keccak256(abi.encodePacked(msg.sender, chosenNumber, salt)) == commitments[msg.sender][i]) {
+                reveals.push(chosenNumber); 
                 commitments[msg.sender][i] = commitments[msg.sender][commitments[msg.sender].length - 1]; // Remove the commitment
                 commitments[msg.sender].pop();
                 return;
