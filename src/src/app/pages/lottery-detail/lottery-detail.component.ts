@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
+import { Web3Service } from '../../services/web3.service';
 
 @Component({
   selector: 'app-lottery-detail',
@@ -18,10 +19,14 @@ export class LotteryDetailComponent implements OnInit {
   id?: string;
   lottery: any = {};
   isLoading = true;
+  account?: string;
+  tickets: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private lotteryService: LotteryService,
+    private web3Service: Web3Service,
+    private ngZone: NgZone,
   ) {}
 
   ngOnInit() {
@@ -32,6 +37,11 @@ export class LotteryDetailComponent implements OnInit {
         this.isLoading = false;
       });
     });
+    this.web3Service.getAccount().subscribe(account => {
+      this.account = account;
+      this.tickets = this.getTickets(this.account);
+      this.ngZone.run(() => {});
+    });
   }
 
   isOver() {
@@ -40,15 +50,22 @@ export class LotteryDetailComponent implements OnInit {
 
   onSubmit() {
     this.lotteryService.enter(this.id!).then(() => {
-      alert('You have entered the lottery!');
+      window.location.reload();
     });
   }
 
-  get tickets() {
+  getTickets(account: string) {
     const choices = JSON.parse(localStorage.getItem(this.id!) || '{}');
-    const tickets = [];
+    let accountChoices: any = {} //choices[account.toString()] || {};
     for (let key in choices) {
-      tickets.push({ number: key, salt: choices[key] });
+      if (key === account) {
+        accountChoices = choices[account];
+      }
+    }
+    const tickets = [];
+    // console.log(account, choices, choices[account]);
+    for (let key in accountChoices) {
+      tickets.push({ number: key, salt: accountChoices[key] });
     }
     return tickets;
   }

@@ -13,9 +13,13 @@ window.Buffer = window.Buffer || Buffer;
 export class LotteryService {
 
   private web3: Web3;
+  private account: any;
 
   constructor(private web3Service: Web3Service) {
     this.web3 = this.web3Service.getWeb3();
+    this.web3Service.getAccount().subscribe(account => {
+      this.account = account;
+    });
   }
 
   async getLottery(id: string) {
@@ -39,19 +43,20 @@ export class LotteryService {
     const choosenNumber = Math.floor(Number.MAX_SAFE_INTEGER * Math.random());
     const salt = Math.floor(Number.MAX_SAFE_INTEGER * Math.random());
     // const choice = keccak256(Buffer.from(choosenNumber.toString() + salt.toString()));
-    const accounts = await this.web3.eth.getAccounts();
-    const account = accounts[0];
-    const choice = solidityPackedKeccak256(['address', 'uint256', 'uint256'], [account, choosenNumber, salt]);
+    const choice = solidityPackedKeccak256(['address', 'uint256', 'uint256'], [this.account, choosenNumber, salt]);
     console.log(choice);
     const otherChoices = JSON.parse(localStorage.getItem(id) || '{}');
-    otherChoices[choosenNumber] = salt;
+    if (!(this.account in otherChoices)) {
+      otherChoices[this.account] = {};
+    }
+    otherChoices[this.account][choosenNumber] = salt;
     const lottery = new this.web3.eth.Contract(LotteryContract.abi, id);
     if (await lottery.methods['isOver']().call()) {
       throw new Error('The lottery is over');
     }
     const _fee = Number(await lottery.methods['getParticipationFee']().call()).toString();
     const result = await lottery.methods['enter'](choice).send({
-      from: account,
+      from: this.account,
       value: _fee,
       gas: "6721975",
     });
@@ -64,8 +69,9 @@ export class LotteryService {
     const lottery = new this.web3.eth.Contract(LotteryContract.abi, id);
     const accounts = await this.web3.eth.getAccounts();
     const account = accounts[0];
-    for (const choosenNumber in choices) {
-      const salt = choices[choosenNumber];
+    const accountChoices = choices[account];
+    for (const choosenNumber in accountChoices) {
+      const salt = accountChoices[choosenNumber];
       try {
         const result = await lottery.methods['reveal'](choosenNumber, salt).send({
           from: account,
