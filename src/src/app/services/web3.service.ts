@@ -15,6 +15,8 @@ export class Web3Service {
     this.web3.eth.provider!.on('accountsChanged', (accounts: string[]) => {
       window.location.reload();
     });
+    // Login Metamask
+    this.loginMetamask();
   }
 
   getWeb3() {
