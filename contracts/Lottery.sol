@@ -12,6 +12,7 @@ contract Lottery {
     address[] private contestants;
     mapping(address => bytes32[]) private commitments;
     uint256[] private reveals;
+    bool private isPrizeWithdrawn = false;
 
     constructor(address _manager, string memory _description, uint256 _expiration, uint256 _revealWindow, uint256 _prize, uint256 _participationFee) {
         require(_expiration > 0, "Expiration must be greater than 0");
@@ -131,9 +132,12 @@ contract Lottery {
     }
 
     function withdraw() public onlyAfterRevealWindow {
+        require(!isPrizeWithdrawn, "Prize already withdrawn");
         address payable winner = payable(pickWinner());
         require(msg.sender == winner, "Only the winner can withdraw the prize");
         winner.transfer(prize);
+        payable(manager).transfer(address(this).balance);
+        isPrizeWithdrawn = true;
     }
 
     receive() external payable {}
