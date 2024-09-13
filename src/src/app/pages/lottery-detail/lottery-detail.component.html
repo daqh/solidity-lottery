@@ -17,6 +17,10 @@
     <p class="lead">{{ lottery.reveals?.length }} revealed tickets</p>
 </div>
 
+<div *ngIf="lottery.winner">
+    {{ lottery.winner }}
+</div>
+
 <h3>Your tickets</h3>
 
 <div>
