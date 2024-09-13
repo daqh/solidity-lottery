@@ -99,12 +99,18 @@ export class LotteryDetailComponent implements OnInit {
 
   canWithdraw() {
     if (this.lottery.winner === null) {
-      return false;
+      return this.lottery.isRevealWindowOver && this.lottery.manager === this.account;
     } else if (this.lottery.isRevealWindowOver && this.lottery.reveals.length === 0) {
       return this.account === this.lottery.manager;
     } else {
       return this.lottery.winner === this.account;
     }
+  }
+
+  withdraw() {
+    this.lotteryService.withdraw(this.id!).then(() => {
+      window.location.reload();
+    });
   }
 
 }

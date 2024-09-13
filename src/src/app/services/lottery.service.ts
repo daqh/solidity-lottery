@@ -101,4 +101,13 @@ export class LotteryService {
     localStorage.setItem(id, JSON.stringify(choices));
   }
 
+  async withdraw(id: string) {
+    const lottery = new this.web3.eth.Contract(LotteryContract.abi, id);
+    const result = await lottery.methods['withdraw']().send({
+      from: this.account,
+      gas: "6721975",
+    });
+    return result;
+  }
+
 }

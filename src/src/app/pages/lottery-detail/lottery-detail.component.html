@@ -45,8 +45,8 @@
 </div>
 
 <div class="row mb-3" *ngIf="canWithdraw()">
-    <form class="d-grid col">
-        <button class="btn btn-primary" [ngClass]="{ 'disabled': isOver() || isLoading }">
+    <form class="d-grid col" (ngSubmit)="withdraw()">
+        <button class="btn btn-primary" [ngClass]="{ 'disabled': (!isOver() && !lottery.isRevealWindowOver) || isLoading }">
             Withdraw
         </button>
     </form>

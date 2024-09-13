@@ -7,7 +7,7 @@
 <hr>
 
 <ul class="list-group mb-3">
-  <li class="list-group-item list-group-item-action" routerLink="/lottery/{{ lottery.id }}" *ngFor="let lottery of lotteries" [ngClass]="{'list-group-item-success': lottery.isOver && !lottery.isRevealWindowOver, 'list-group-item-danger': lottery.isOver && lottery.isRevealWindowOver, 'border-primary': lottery.isManager}">
+  <li class="list-group-item list-group-item-action" routerLink="/lottery/{{ lottery.id }}" *ngFor="let lottery of lotteries" [ngClass]="{'list-group-item-success': lottery.isExpirationOver && !lottery.isRevealWindowOver, 'list-group-item-danger': lottery.isOver && lottery.isRevealWindowOver, 'border-primary': lottery.isManager}">
     <h3 class="display-3">{{ lottery.description }}</h3>
     <div *ngIf="lottery.isManager">You are the manager</div>
     <div>{{ lottery.id }}</div>

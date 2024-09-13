@@ -133,6 +133,11 @@ contract Lottery {
 
     function withdraw() public onlyAfterRevealWindow {
         require(!isPrizeWithdrawn, "Prize already withdrawn");
+        if (contestants.length == 0) {
+            payable(manager).transfer(address(this).balance);
+            isPrizeWithdrawn = true;
+            return;
+        }
         address payable winner = payable(pickWinner());
         require(msg.sender == winner, "Only the winner can withdraw the prize");
         winner.transfer(prize);
