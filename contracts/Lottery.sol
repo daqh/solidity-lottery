@@ -72,6 +72,10 @@ contract Lottery {
         return reveals;
     }
 
+    function getIsPrizeWithdrawn() public view returns (bool) {
+        return isPrizeWithdrawn;
+    }
+
     function isExpirationOver() public view returns (bool) {
         return block.timestamp >= expiration;
     }

@@ -39,6 +39,7 @@ export class LotteryService {
       revealWindow: new Date(Number(await lottery.methods['getRevealWindow']().call()) * 1000),
       isExpirationOver: await lottery.methods['isExpirationOver']().call(),
       isRevealWindowOver: await lottery.methods['isRevealWindowOver']().call(),
+      isPrizeWithdrawn: await lottery.methods['getIsPrizeWithdrawn']().call(),
       winner: null,
     };
     if(data.isRevealWindowOver) {
